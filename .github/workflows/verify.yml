@@ -35,10 +35,10 @@ jobs:
       - name: Compile Academic LaTeX Paper (hyper_ramanujan_oertel_2026.pdf)
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
           cd paper
-          pdflatex -interaction=nonstopmode hyper_ramanujan_oertel_2026.tex
-          pdflatex -interaction=nonstopmode hyper_ramanujan_oertel_2026.tex
+          pdflatex -interaction=nonstopmode -halt-on-error hyper_ramanujan_oertel_2026.tex
+          pdflatex -interaction=nonstopmode -halt-on-error hyper_ramanujan_oertel_2026.tex
 
       - name: Upload Compiled LaTeX Paper PDF Artifact
         uses: actions/upload-artifact@v4
