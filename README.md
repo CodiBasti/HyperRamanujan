@@ -113,25 +113,25 @@ $$
 
 ---
 
-## 2D Pareto-Frontier & Precision Benchmark (50-Digit Reference)
+## 2D Pareto-Frontier, Memory Footprint & Precision Benchmark (50-Digit Reference)
 
-A formula lies on the **strict 2D Pareto Frontier (`YES *`)** if no other formula achieves higher or equal accuracy in both the practical regime (`h <= 0.5`) and global worst-case regime (`h in [0, 1]`) at lower or equal computational cost (`Op Cost`).
+A formula lies on the **strict 2D Pareto Frontier (`YES *`)** if no other formula achieves higher or equal accuracy in both the practical regime (`h <= 0.5`) and global worst-case regime (`h in [0, 1]`) at lower or equal computational cost (`Op Cost`). **`MemBits`** measures the exact constant-memory footprint (Minimum Description Length in bits: $\lceil \log_2(|n|+1)\rceil + 1$ per unique integer/rational component plus `64` bits per precomputed `float64` literal in `.rodata`).
 
-| Approximation Formula | Taylor Order | `sqrt` / `pow` | Op Cost | Digits (`h=0.1`) | Min Digits (`h <= 0.5`) | Min Digits (`h in [0,1]`) | Max Global Error (`ppm`) | **Pareto Frontier?** | **Efficiency Score** |
+| Approximation Formula | Taylor Order | `sqrt` / `pow` | Op Cost | **`MemBits`** | Digits (`h=0.1`) | Min Digits (`h <= 0.5`) | Max Global Error (`ppm`) | **Pareto?** | **Score** |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Kepler (1609)** | `O(h¹)` | `1` / `0` | `13.0` | 1.30 | 0.61 | 0.22 | `607300.92` | `no` | `0.214` |
-| **Peano/Sipos (1792)** | `O(h¹)` | `1` / `0` | `13.0` | 3.31 | 1.82 | 0.75 | `178097.25` | `no` | `0.582` |
-| **Ramanujan I (1914)** | `O(h²)` | `1` / `0` | `10.0` | 5.69 | 3.51 | 2.38 | `4155.03` | `no` | `1.279` |
-| **Matt Parker (2020)** | `O(h⁰)` | `1` / `0` | `15.0` | 4.65 | 3.56 | 2.21 | `6120.09` | `no` | `0.927` |
-| **Hudson [1/1] (1917)** | `O(h³)` | `0` / `0` | `9.0` | 7.23 | 4.28 | 2.72 | `1889.83` | **`YES *`** | `1.665` |
-| **Jacobsen-Waadeland [2/2] (1985)** | `O(h⁴)` | `0` / `0` | `13.0` | 8.85 | 5.12 | 3.05 | `888.05` | **`YES *`** | `1.662` |
-| **Cantrell (2004, `+c·h¹²`)** | `O(h⁴)` | `1` / `0` | `23.5` | 9.58 | 5.79 | 4.86 | `13.74` | **`YES *`** | `1.449` |
-| **Ramanujan II (1914)** | `O(h⁴)` | `1` / `0` | `15.0` | 9.58 | 5.76 | 3.40 | `402.34` | **`YES *`** | `1.698` |
-| **Oertel (2026) [`HR-6B`]** | `O(h⁶)` | `1` / `0` | `28.5` | 13.13 | 7.73 | 4.93 | `11.82` | **`YES *`** | `1.695` |
-| **Oertel (2026) [`HR-6M`]** | `O(h⁶)` | `1` / `0` | `37.5` | 13.61 | 8.34 | **6.52** | **`0.30`** | **`YES *`** | `1.618` |
-| **Oertel (2026) [`HR-8B`]** | `O(h⁸)` | `1` / `0` | `32.5` | 15.31 | 8.48 | 5.04 | `9.11` | **`YES *`** | `1.786` |
-| **Oertel (2026) [`HR-7-Int`]** | `O(h⁷)` | `1` / `0` | `26.0` | 14.64 | 8.40 | 4.11 | `78.05` | **`YES *`** | `1.885` |
-| **Oertel (2026) [`HR-8P` ★]** | **`O(h⁸)`** | **`1` / `0`** | `34.5` | **16.00** | **9.81** | **6.20** | **`0.63`** | **`YES *`** | **`1.907` (Rank 1)** |
+| **Kepler (1609)** | `O(h¹)` | `1` / `0` | `13.0` | `5` | 1.30 | 0.61 | `607300.92` | `no` | `0.214` |
+| **Peano/Sipos (1792)** | `O(h¹)` | `1` / `0` | `13.0` | `8` | 3.31 | 1.82 | `178097.25` | `no` | `0.582` |
+| **Ramanujan I (1914)** | `O(h²)` | `1` / `0` | `10.0` | `12` | 5.69 | 3.51 | `4155.03` | `no` | `1.279` |
+| **Matt Parker (2020)** | `O(h⁰)` | `1` / `0` | `15.0` | `59` | 4.65 | 3.56 | `6120.09` | `no` | `0.927` |
+| **Hudson [1/1] (1917)** | `O(h³)` | `0` / `0` | `9.0` | `17` | 7.23 | 4.28 | `1889.83` | **`YES *`** | `1.665` |
+| **Jacobsen-Waadeland [2/2] (1985)** | `O(h⁴)` | `0` / `0` | `13.0` | `34` | 8.85 | 5.12 | `888.05` | **`YES *`** | `1.662` |
+| **Ramanujan II (1914)** | `O(h⁴)` | `1` / `0` | `15.0` | `14` | 9.58 | 5.76 | `402.34` | **`YES *`** | `1.698` |
+| **Cantrell (2004, `+c·h¹²`)** | `O(h⁴)` | `1` / `0` | `23.5` | `83` | 9.58 | 5.79 | `13.74` | **`YES *`** | `1.449` |
+| **Oertel (2026) [`HR-7-Int`]** | `O(h⁷)` | `1` / `0` | `26.0` | **`68`** | 14.64 | 8.40 | `78.05` | **`YES *`** | `1.885` |
+| **Oertel (2026) [`HR-6B`]** | `O(h⁶)` | `1` / `0` | `28.5` | `112` | 13.13 | 7.73 | `11.82` | **`YES *`** | `1.695` |
+| **Oertel (2026) [`HR-8B`]** | `O(h⁸)` | `1` / `0` | `32.5` | `141` | 15.31 | 8.48 | `9.11` | **`YES *`** | `1.786` |
+| **Oertel (2026) [`HR-8P` ★]** | **`O(h⁸)`** | **`1` / `0`** | `34.5` | `180` | **16.00** | **9.81** | **`0.63`** | **`YES *`** | **`1.907` (Rank 1)** |
+| **Oertel (2026) [`HR-6M`]** | `O(h⁶)` | `1` / `0` | `37.5` | `290` | 13.61 | 8.34 | **`0.30`** | **`YES *`** | `1.618` |
 
 ---
 

@@ -1,58 +1,95 @@
 """
 Objective mathematical evaluation of 'The Best' approximation formula via:
-1. Strict 2D Pareto-Frontier Dominance Analysis (OpCost vs. Guaranteed Precision — zero arbitrary weights!)
-2. Information-Theoretic Efficiency (Bits of precision gained per FPU cycle unit)
-   evaluated separately for:
-   - Practical Ellipses (h <= 0.5, i.e. aspect ratio a/b <= 5.83): Eta_pract = D_typical / Cost
-   - Global Worst-Case (h in [0, 1], all eccentricities up to flat line): Eta_global = D_global / Cost
-   - Balanced Harmonic/Weighted Index: Eff_Score
+1. Strict Multi-Objective Pareto-Frontier Dominance Analysis:
+   Evaluates (OpCost, MemBits, D_practical, D_global) — zero arbitrary weights!
+2. Computational FPU Cost (`OpCost`):
+   Hardware cycle model: +, -, * = 1.0; / = 4.0; sqrt = 6.0; pow = 12.0; non-int const load = 2.5.
+3. Constant Memory / Information Footprint (`MemBits`):
+   Exact bit-length (Kolmogorov / Minimum Description Length) required to store the formula's
+   unique constants:
+   - Integer n: ceil(log2(|n| + 1)) + 1 bits
+   - Rational p/q: bits(p) + bits(q)
+   - Symbolic pi-derived boundary constant (e.g., 4/pi - 14/11 or delta_1): 16 bits (symbolic) / 64 bits (precomputed float64)
+   - Empirical fitted minimax float64 constant (no exact closed form): 64 bits (8 bytes IEEE-754)
 """
 
+import math
 from typing import Dict, Any, List
 import mpmath as mp
 from src.benchmarks.error_analysis import evaluate_approximations
 
 
-# Hardware cycle weights & structural metadata for each formula
+def int_bits(n: int) -> int:
+    """Returns exact bit-length needed to store integer n (magnitude + sign bit)."""
+    return int(math.ceil(math.log2(abs(n) + 1))) + 1 if n != 0 else 1
+
+
+def compute_mem_bits(spec: Dict[str, Any]) -> int:
+    """
+    Computes the exact constant-memory footprint in bits (Minimum Description Length):
+    - Sum of bit-lengths of all unique integer/rational numerator & denominator constants
+    - Plus 64 bits (8 bytes IEEE-754 float64) for each precomputed/empirical non-rational float constant
+      (or symbolic pi-derived boundary constant stored in .rodata for fast evaluation).
+    """
+    int_cost = sum(int_bits(c) for c in spec["int_consts"])
+    float_cost = 64 * spec["float64_consts"]
+    return int_cost + float_cost
+
+
+# Hardware cycle weights & exact constant-memory metadata for each formula
 FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
     "Kepler (1609)": {
-        "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 1
+        "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [1, 2], "float64_consts": 0, "taylor_order": 1
     },
     "Peano/Sipos (1792)": {
-        "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 1
+        "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [3, 2, 1], "float64_consts": 0, "taylor_order": 1
     },
     "Ramanujan I (1914)": {
-        "add_mul": 4, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 2
+        "add_mul": 4, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [3, 2, 1, 4], "float64_consts": 0, "taylor_order": 2
     },
     "Matt Parker (2020)": {
-        "add_mul": 9, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 0
+        "add_mul": 9, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [53, 3, 717, 35, 269, 667, 371], "float64_consts": 0, "taylor_order": 0
     },
     "Hudson [1/1] (1917)": {
-        "add_mul": 5, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0, "taylor_order": 3
+        "add_mul": 5, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [64, 3, 16], "float64_consts": 0, "taylor_order": 3
     },
     "Jacobsen-Waadeland [2/2] (1985)": {
-        "add_mul": 9, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0, "taylor_order": 4
+        "add_mul": 9, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [256, 48, 21, 112, 3], "float64_consts": 0, "taylor_order": 4
     },
     "Ramanujan II (1914)": {
-        "add_mul": 5, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 4
+        "add_mul": 5, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [1, 3, 10, 4], "float64_consts": 0, "taylor_order": 4
     },
     "Cantrell (2001)": {
-        "add_mul": 11, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 1, "taylor_order": 4
+        "add_mul": 11, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 1,
+        "int_consts": [1, 3, 10, 4, 12], "float64_consts": 1, "taylor_order": 4
     },
     "HR-7-Int (Order-7, pure integers)": {
-        "add_mul": 12, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 7
+        "add_mul": 12, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "int_consts": [1, 3, 10, 4, 81, 18432, 21120, 5144], "float64_consts": 0, "taylor_order": 7
     },
     "HR-6B (Order-6 + exact h=1)": {
-        "add_mul": 12, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1, "taylor_order": 6
+        "add_mul": 12, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1,
+        "int_consts": [1, 3, 10, 4, 27, 6144, 7040], "float64_consts": 1, "taylor_order": 6
     },
     "HR-8B (Order-8 + exact h=1)": {
-        "add_mul": 16, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1, "taylor_order": 8
+        "add_mul": 16, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1,
+        "int_consts": [1, 3, 10, 4, 27, 6144, 7040, 5144, 413, 9], "float64_consts": 1, "taylor_order": 8
     },
     "HR-8P (Order-8, -13/14 pole + exact h=1)": {
-        "add_mul": 18, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1, "taylor_order": 8
+        "add_mul": 18, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 1,
+        "int_consts": [1, 3, 10, 4, 27, 13, 14, 6144, 89216, 7, 173288, 21, 103199, 63],
+        "float64_consts": 1, "taylor_order": 8
     },
     "HR-6M (Order-6, Minimax [3/1] + exact h=1)": {
-        "add_mul": 16, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 3, "taylor_order": 6
+        "add_mul": 16, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 3,
+        "int_consts": [1, 3, 10, 4, 27, 6144], "float64_consts": 4, "taylor_order": 6
     },
 }
 
@@ -78,11 +115,11 @@ def compute_op_cost(spec: Dict[str, Any]) -> float:
 def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
     """
     Evaluates all approximations on a dense grid of h in [0, 1] (including h=0 and near-degenerate
-    ellipses h = 0.9945, 0.998, 0.9999, 1.0) and determines:
-    1. Strict 2D Pareto Frontier status (`is_pareto_optimal`):
-       A formula is strictly Pareto-optimal if NO other formula has <= OpCost AND strictly higher
-       precision in BOTH practical (h <= 0.5) and global (h in [0, 1]) regimes.
-    2. Digits at h = 0.1 (D_typ), worst-case digits in h <= 0.5 (D_pract), and global worst-case digits (D_glob).
+    ellipses h = 0.9945, 0.998, 0.9999, 1.0) and computes:
+    1. Strict Multi-Objective Pareto Frontier status (`pareto_frontier`):
+       Non-dominated with respect to (OpCost, D_practical, D_global).
+    2. Constant Memory Footprint (`mem_bits` in bits / bytes).
+    3. Digits at h = 0.1 (D_typ), worst-case digits in h <= 0.5 (D_pract), and global worst-case digits (D_glob).
     """
     h_dense = [
         0.0, 0.01, 0.05, 0.1, 0.2, 0.25, 0.35, 0.5,
@@ -96,6 +133,7 @@ def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
     for name, data in bench.items():
         spec = FORMULA_COMPLEXITY_SPEC[name]
         cost = compute_op_cost(spec)
+        mem_bits = compute_mem_bits(spec)
         errs = data["relative_errors"]
 
         err_0_1 = max(errs[idx_0_1], 1e-16)
@@ -113,6 +151,7 @@ def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
             "taylor_order": spec["taylor_order"],
             "sqrt_count": spec["sqrt"],
             "op_cost": cost,
+            "mem_bits": mem_bits,
             "digits_at_h_0_1": d_typ,
             "digits_practical_max_h_0_5": d_pract,
             "digits_global_worst_case": d_glob,
@@ -144,27 +183,24 @@ def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
 
 
 def print_pareto_table() -> None:
-    """Prints the Pareto-Optimality & Efficiency Ranking table."""
+    """Prints the Pareto-Optimality, Memory Footprint, & Efficiency Ranking table."""
     report = evaluate_pareto_efficiency()
     header = (
-        f"| {'Formula / Method':<44} | {'Order':<5} | {'Cost':<5} | "
-        f"{'Digits (h=0.1)':<14} | {'Min (h<=0.5)':<12} | {'Min [0,1]':<9} | "
-        f"{'Max Err (ppm)':<13} | {'Pareto?':<7} | {'Eff. Score':<10} |"
+        f"| {'Formula / Method':<44} | {'Order':<5} | {'Cost':<5} | {'MemBits':<7} | "
+        f"{'Digits (h=0.1)':<14} | {'Min (h<=0.5)':<12} | {'Max Err (ppm)':<13} | {'Pareto?':<7} | {'Score':<6} |"
     )
     sep = (
-        "|" + "-" * 46 + "|" + "-" * 7 + "|" + "-" * 7 + "|"
-        + "-" * 16 + "|" + "-" * 14 + "|" + "-" * 11 + "|"
-        + "-" * 15 + "|" + "-" * 9 + "|" + "-" * 12 + "|"
+        "|" + "-" * 46 + "|" + "-" * 7 + "|" + "-" * 7 + "|" + "-" * 9 + "|"
+        + "-" * 16 + "|" + "-" * 14 + "|" + "-" * 15 + "|" + "-" * 9 + "|" + "-" * 8 + "|"
     )
     print(header)
     print(sep)
     for row in report:
         p_flag = "YES *" if row["pareto_frontier"] else "no"
         print(
-            f"| {row['name']:<44} | O(h^{row['taylor_order']}) | {row['op_cost']:<5.1f} | "
+            f"| {row['name']:<44} | O(h^{row['taylor_order']}) | {row['op_cost']:<5.1f} | {row['mem_bits']:<7d} | "
             f"{row['digits_at_h_0_1']:<14.2f} | {row['digits_practical_max_h_0_5']:<12.2f} | "
-            f"{row['digits_global_worst_case']:<9.2f} | {row['max_global_ppm']:<13.2f} | "
-            f"{p_flag:<7} | {row['efficiency_score']:<10.3f} |"
+            f"{row['max_global_ppm']:<13.2f} | {p_flag:<7} | {row['efficiency_score']:<6.3f} |"
         )
 
 
