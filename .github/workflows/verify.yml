@@ -31,3 +31,18 @@ jobs:
 
       - name: Run Full Research Benchmark Pipeline (2D & 3D)
         run: python main.py
+
+      - name: Compile Academic LaTeX Paper (hyper_ramanujan_oertel_2026.pdf)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+          cd paper
+          pdflatex -interaction=nonstopmode hyper_ramanujan_oertel_2026.tex
+          pdflatex -interaction=nonstopmode hyper_ramanujan_oertel_2026.tex
+
+      - name: Upload Compiled LaTeX Paper PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hyper_ramanujan_oertel_2026_pdf
+          path: paper/hyper_ramanujan_oertel_2026.pdf
+
