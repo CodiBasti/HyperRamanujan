@@ -1,6 +1,7 @@
 # Closed-Form Radical Approximations for the Ellipse Circumference and Triaxial Ellipsoid Surface Area: Continued Fraction Periodicity of Ramanujan II and Singular-Pole Hyper-Ramanujan (`HR`) Extensions
 
 **Author:** Sebastian Oertel ([@CodiBasti](https://github.com/CodiBasti) • [ORCID: 0009-0000-7427-2058](https://orcid.org/0009-0000-7427-2058))  
+**Permanent DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
 **Repository:** `https://github.com/CodiBasti/HyperRamanujan`  
 **Date:** November 2026  
 

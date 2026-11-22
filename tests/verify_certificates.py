@@ -244,6 +244,7 @@ def run_all_certificates() -> Dict[str, Any]:
         "project": "Hyper-Ramanujan (HR) Ellipse & Triaxial Ellipsoid Approximations",
         "author": "Sebastian Oertel (@CodiBasti)",
         "orcid": "https://orcid.org/0009-0000-7427-2058",
+        "doi": "https://doi.org/10.5281/zenodo.24441829",
         "repository": "https://github.com/CodiBasti/HyperRamanujan",
         "verified_at_utc": datetime.now(timezone.utc).isoformat(),
         "certificate_A_symbolic_Q": cert_a,

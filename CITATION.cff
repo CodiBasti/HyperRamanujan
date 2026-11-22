@@ -7,6 +7,7 @@ authors:
     orcid: "https://orcid.org/0009-0000-7427-2058"
 title: "Hyper-Ramanujan (HR) Closed-Form Radical Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area"
 version: 1.0.0
+doi: 10.5281/zenodo.24441829
 date-released: 2026-11-22
 url: "https://github.com/CodiBasti/HyperRamanujan"
 repository-code: "https://github.com/CodiBasti/HyperRamanujan"

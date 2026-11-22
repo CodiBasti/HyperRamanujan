@@ -5,9 +5,11 @@
   "attribution": {
     "author": "Sebastian Oertel",
     "orcid": "https://orcid.org/0009-0000-7427-2058",
+    "doi": "10.5281/zenodo.24441829",
+    "doi_url": "https://doi.org/10.5281/zenodo.24441829",
     "github_handle": "CodiBasti",
     "repository_url": "https://github.com/CodiBasti/HyperRamanujan",
-    "preferred_citation_label": "Oertel (2026) [HR-8P / HR-3D-10P]",
+    "preferred_citation_label": "Oertel (2026) [HR-8P / HR-3D-10P], DOI: 10.5281/zenodo.24441829",
     "year": 2026,
     "license": "MIT"
   },
