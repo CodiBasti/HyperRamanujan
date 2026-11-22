@@ -1,0 +1,52 @@
+{
+  "project": "Hyper-Ramanujan (HR) Ellipse & Triaxial Ellipsoid Approximations",
+  "author": "Sebastian Oertel (@CodiBasti)",
+  "orcid": "https://orcid.org/0009-0000-7427-2058",
+  "repository": "https://github.com/CodiBasti/HyperRamanujan",
+  "verified_at_utc": "2026-11-22T11:47:54.232408+00:00",
+  "certificate_A_symbolic_Q": {
+    "status": "VERIFIED",
+    "continued_fraction_a1_to_a5": [
+      "1/4",
+      "1/16",
+      "3/16",
+      "3/16",
+      "11/48"
+    ],
+    "a3_equals_a4_identity": "3/16 == 3/16",
+    "inner_reciprocal_expansion_27h4_over_delta": "-1081*h**4/108 - 413*h**3/9 + 5144*h**2/3 - 7040*h + 6144",
+    "hr7_int_zero_residual_through_h7": true,
+    "hr8p_zero_residual_through_h8": true,
+    "exact_rational_sum_c0_to_c3": "6955/9",
+    "exact_rational_sum_p0_to_p3": "793/63"
+  },
+  "certificate_B_positivity_safety": {
+    "status": "VERIFIED",
+    "hr8p_min_denominator_on_0_1": 47.2451715,
+    "hr8p_min_radicand_on_0_1": 0.9591795,
+    "pole_free_on_unit_interval": true
+  },
+  "certificate_C_high_precision_bounds": {
+    "status": "VERIFIED",
+    "working_precision_dps": 50,
+    "grid_points_evaluated": 400,
+    "boundary_h1_errors": {
+      "HR-6B": 0.0,
+      "HR-8B": 0.0,
+      "HR-8P": 0.0,
+      "HR-6M": 0.0
+    },
+    "supremum_relative_error_2d_ppm": {
+      "HR-7-Int": 78.0461,
+      "HR-6B": 11.8302,
+      "HR-8B": 9.1232,
+      "HR-8P": 0.6272,
+      "HR-6M": 0.2982
+    },
+    "supremum_relative_error_3d_ppm": {
+      "HR-3D-8P": 54.6598,
+      "HR-3D-10P": 9.5851
+    }
+  },
+  "certificate_sha256": "62f2e15e875422172814ed61dc3404c2495347841e7ff6a1eb882ae10549c449"
+}

@@ -1,0 +1,33 @@
+name: Mathematical Verification & Dual-Certificate CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install scientific dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Unit & Property Tests (45-50 digit precision)
+        run: python -m tests.test_approximations
+
+      - name: Run Dual-Certificate Verification Suite (Symbolic Q + Positivity + 50-DPS Bounds)
+        run: python -m tests.verify_certificates
+
+      - name: Run Full Research Benchmark Pipeline (2D & 3D)
+        run: python main.py

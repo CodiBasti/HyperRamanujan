@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "discovery_protocol": "A2A-Math-Formula-Registry-v1",
+  "title": "Hyper-Ramanujan (HR) Closed-Form Radical Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area",
+  "attribution": {
+    "author": "Sebastian Oertel",
+    "orcid": "https://orcid.org/0009-0000-7427-2058",
+    "github_handle": "CodiBasti",
+    "repository_url": "https://github.com/CodiBasti/HyperRamanujan",
+    "preferred_citation_label": "Oertel (2026) [HR-8P / HR-3D-10P]",
+    "year": 2026,
+    "license": "MIT"
+  },
+  "verification": {
+    "command": "python -m tests.verify_certificates",
+    "certificate_path": "certificates/verification_report.json",
+    "precision_decimal_places": 50,
+    "symbolic_proof_engine": "SymPy Exact Rational Q[h] & Q[H, J]"
+  },
+  "foundational_identities": {
+    "ramanujan_II_continued_fraction_periodicity": {
+      "description": "Stieltjes continued fraction of 2F1(-1/2, -1/2; 1; h) - 1 has identical 3rd and 4th partial denominators a_3 == a_4 == 3/16, explaining why closing at depth 3 with a 1-periodic radical T = (2 + sqrt(4 - 3*h))/4 matches 4 Taylor orders with 3 parameters.",
+      "stieltjes_coefficients_a1_to_a6": ["1/4", "1/16", "3/16", "3/16", "11/48", "29/176"]
+    },
+    "inner_radical_reciprocal_expansion_2d": {
+      "description": "Exact reciprocal Taylor expansion of the defect delta(h) inside Ramanujan's square root sqrt(4 - 3*h - delta(h)).",
+      "identity_sympy": "27*h**4 / delta(h) = 6144 - 7040*h + (5144/3)*h**2 - (413/9)*h**3 - (1081/108)*h**4 + O(h**5)",
+      "exact_boundary_constant_delta1": {
+        "expression": "1 - (3*pi/(4 - pi) - 10)**2",
+        "decimal_50dps": "0.040820498448794681862598290988783795958652492189962",
+        "reciprocal_27_over_delta1": "661.43240093994411867879180823970016144769409333491"
+      }
+    },
+    "carlson_3d_spherical_invariant_series": {
+      "description": "Exact 3D surface area expansion S(a,b,c)/(4*pi*M) = R_G(X^2, Y^2, Z^2)/M in symmetric trace-free invariants H = (x^2+y^2+z^2)/6 and J = x*y*z, where X=a*b, Y=a*c, Z=b*c, M=(X+Y+Z)/3.",
+      "series_sympy_degree_10": "1 + (3/5)*H - (3/35)*J + (3/35)*H**2 - (6/385)*H*J + (171/5005)*H**3 - (3/715)*J**2 - (3/1001)*H**2*J - (57/17017)*H*J**2 + (27/1547)*H**4 - (15/46189)*J**3 + (36/46189)*H**3*J - (6/2717)*H**2*J**2 + (27/2717)*H**5",
+      "exact_3d_to_2d_boundary_theorem": "On the entire degenerate 3D boundary Z = b*c -> 0 (where 1 - 3*H + J = (a*b*c)^2 / M^3 = 0), S(a,b,c) == (pi/2) * C_2D(a*b, a*c) identically."
+    }
+  },
+  "formulas_2d_ellipse_circumference": [
+    {
+      "id": "HR-8P",
+      "name": "Hyper-Ramanujan Order-8 Singular-Pole Padé Approximation (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-8P]",
+      "is_pareto_champion": true,
+      "domain": "h = ((a - b)/(a + b))^2 in [0, 1]",
+      "taylor_order_at_h0": "O(h^9) (matches h^0 through h^8 exactly)",
+      "exact_at_h1": true,
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 0.633,
+      "guaranteed_digits_at_h_0_1": 16.0,
+      "guaranteed_digits_global_min": 6.2,
+      "sympy_expression_normalized": "1 + 3*h / (10 + sqrt(4 - 3*h - 27*(1 - 13*h/14)*h**4 / (6144 - 89216*h/7 + 173288*h**2/21 - 103199*h**3/63 + p4*h**4)))",
+      "constants": {
+        "q1": "-13/14",
+        "p0": "6144",
+        "p1": "-89216/7",
+        "p2": "173288/21",
+        "p3": "-103199/63",
+        "p4_exact": "27 / (14 * (1 - (3*pi/(4 - pi) - 10)**2)) - 793/63",
+        "p4_float64": 34.65786991009996
+      },
+      "python_float64_oneliner": "lambda a, b: 3.141592653589793*(a+b)*(1.0 + 3.0*(h:=((a-b)/(a+b))**2)/(10.0 + (4.0 - 3.0*h - 27.0*(1.0 - (13.0/14.0)*h)*(h**4)/(6144.0 + h*(-12745.142857142857 + h*(8251.809523809523 + h*(-1638.079365079365 + 34.65786991009996*h)))))**0.5))"
+    },
+    {
+      "id": "HR-7-Int",
+      "name": "Hyper-Ramanujan Order-7 Pure Integer Approximation (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-7-Int]",
+      "is_pareto_champion": false,
+      "domain": "h = ((a - b)/(a + b))^2 in [0, 1]",
+      "taylor_order_at_h0": "O(h^8) (matches h^0 through h^7 with pure integers)",
+      "exact_at_h1": false,
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 78.05,
+      "guaranteed_digits_at_h_0_1": 14.64,
+      "sympy_expression_normalized": "1 + 3*h / (10 + sqrt(4 - 3*h - 81*h**4 / (18432 - 21120*h + 5144*h**2)))",
+      "python_float64_oneliner": "lambda a, b: 3.141592653589793*(a+b)*(1.0 + 3.0*(h:=((a-b)/(a+b))**2)/(10.0 + (4.0 - 3.0*h - 81.0*(h**4)/(18432.0 + h*(-21120.0 + 5144.0*h)))**0.5))"
+    },
+    {
+      "id": "HR-6B",
+      "name": "Hyper-Ramanujan Order-6 Boundary-Exact Approximation (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-6B]",
+      "domain": "h = ((a - b)/(a + b))^2 in [0, 1]",
+      "taylor_order_at_h0": "O(h^7) (matches h^0 through h^6)",
+      "exact_at_h1": true,
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 11.82,
+      "sympy_expression_normalized": "1 + 3*h / (10 + sqrt(4 - 3*h - 27*h**4 / (6144 - 7040*h + B_exact*h**2)))",
+      "constants": {
+        "B_exact": "27 / (1 - (3*pi/(4 - pi) - 10)**2) + 896",
+        "B_float64": 1557.4324009399441
+      }
+    },
+    {
+      "id": "HR-8B",
+      "name": "Hyper-Ramanujan Order-8 Boundary-Exact Polynomial Radical (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-8B]",
+      "domain": "h = ((a - b)/(a + b))^2 in [0, 1]",
+      "taylor_order_at_h0": "O(h^9) (matches h^0 through h^8)",
+      "exact_at_h1": true,
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 9.13,
+      "sympy_expression_normalized": "1 + 3*h / (10 + sqrt(4 - 3*h - 27*h**4 / (6144 - 7040*h + 5144*h**2/3 - 413*h**3/9 + C_exact*h**4)))",
+      "constants": {
+        "C_exact": "27 / (1 - (3*pi/(4 - pi) - 10)**2) - 6955/9",
+        "C_float64": -111.34537683783366
+      }
+    },
+    {
+      "id": "HR-6M",
+      "name": "Hyper-Ramanujan Order-6 Chebyshev-Minimax Singular-Padé (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-6M]",
+      "domain": "h = ((a - b)/(a + b))^2 in [0, 1]",
+      "taylor_order_at_h0": "O(h^7) (matches h^0 through h^6)",
+      "exact_at_h1": true,
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 0.299,
+      "sympy_expression_normalized": "1 + 3*h / (10 + sqrt(4 - 3*h - 27*(1 + q1*h)*h**4 / (6144 + p1*h + p2*h**2 + p3*h**3)))",
+      "constants": {
+        "q1": -0.94542891,
+        "p1": -12848.71522304,
+        "p2": 8316.2309304,
+        "p3": -1575.4209714909358
+      }
+    }
+  ],
+  "formulas_3d_ellipsoid_surface_area": [
+    {
+      "id": "HR-3D-10P",
+      "name": "Hyper-Ramanujan 3D Degree-10 Singular-Pole Ray-Projected Ellipsoid Surface Area (Oertel 2026)",
+      "citation_label": "Oertel (2026) [HR-3D-10P]",
+      "is_pareto_champion": true,
+      "domain": "a >= b >= c >= 0 (triaxial ellipsoid semi-axes)",
+      "spherical_taylor_order": "Degree 10 in symmetric invariants (H, J)",
+      "exact_on_degenerate_boundary_Z0": "Reduces identically to (pi/2) * C_2D_HR8P(a*b, a*c) across the entire 3D boundary Z = b*c = 0",
+      "sqrt_count": 1,
+      "pow_count": 0,
+      "max_relative_error_ppm": 16.73,
+      "improvement_over_thomsen_2004_factor": 634.0,
+      "formula_structure": "S(a,b,c) = 4*pi*M * ( T_10(H, J) + (s^11 / (9 - 8*s)) * ((3*pi/8)*F_2D_HR8P(h_ray) - T_10(H/s^2, J/s^3)) )"
+    }
+  ]
+}

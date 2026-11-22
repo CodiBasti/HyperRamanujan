@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use these Hyper-Ramanujan (HR) ellipse circumference or triaxial ellipsoid surface area approximations in your research, software, or AI models, please cite this work as below."
+authors:
+  - family-names: "Oertel"
+    given-names: "Sebastian"
+    alias: "CodiBasti"
+    orcid: "https://orcid.org/0009-0000-7427-2058"
+title: "Hyper-Ramanujan (HR) Closed-Form Radical Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area"
+version: 1.0.0
+date-released: 2026-11-22
+url: "https://github.com/CodiBasti/HyperRamanujan"
+repository-code: "https://github.com/CodiBasti/HyperRamanujan"
+license: MIT
+keywords:
+  - ellipse circumference
+  - ellipse perimeter
+  - triaxial ellipsoid surface area
+  - Ramanujan approximation
+  - Hyper-Ramanujan
+  - continued fractions
+  - Pade approximants
+  - complete elliptic integral
+  - Carlson symmetric integral
+  - special functions
+abstract: >-
+  Resolves the fourth-order accuracy mechanism of Ramanujan's 1914 second ellipse
+  perimeter approximation via exact Stieltjes continued fraction periodicity (a3 = a4 = 3/16)
+  and derives the exact reciprocal expansion of the inner-radical defect
+  27*h^4 / delta(h) = 6144 - 7040*h + (5144/3)*h^2 - (413/9)*h^3 - (1081/108)*h^4 + O(h^5).
+  Introduces five single-radical 2D Hyper-Ramanujan approximations (HR-7-Int, HR-6B, HR-8B,
+  HR-8P, HR-6M) reaching full float64 precision at moderate eccentricities and 0.63 ppm
+  (HR-8P) / 0.30 ppm (HR-6M) globally across h in [0, 1], as well as the 3D triaxial
+  ellipsoid surface area generalization (HR-3D-10P) achieving < 16.8 ppm across all triaxial
+  shapes using only one square root and zero fractional powers.

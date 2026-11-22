@@ -1,0 +1,30 @@
+{
+  "title": "Hyper-Ramanujan (HR) Closed-Form Radical Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area",
+  "upload_type": "software",
+  "description": "<p>Machine-verified symbolic and high-precision numerical research suite introducing the <strong>Hyper-Ramanujan (HR)</strong> family of closed-form single-radical approximations for the 2D ellipse circumference (<code>HR-7-Int</code>, <code>HR-6B</code>, <code>HR-8B</code>, <code>HR-8P</code>, <code>HR-6M</code>) and 3D triaxial ellipsoid surface area (<code>HR-3D-8P</code>, <code>HR-3D-10P</code>) by Sebastian Oertel (<code>@CodiBasti</code>).</p>",
+  "creators": [
+    {
+      "name": "Oertel, Sebastian",
+      "orcid": "0009-0000-7427-2058"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ellipse circumference",
+    "ellipse perimeter",
+    "triaxial ellipsoid surface area",
+    "Ramanujan approximation",
+    "Hyper-Ramanujan",
+    "continued fractions",
+    "Pade approximants",
+    "Carlson symmetric elliptic integral",
+    "verified mathematics"
+  ],
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/CodiBasti/HyperRamanujan",
+      "relation": "isSupplementTo"
+    }
+  ]
+}
