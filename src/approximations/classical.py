@@ -49,6 +49,26 @@ def approx_ramanujan_I(h: mp.mpf) -> mp.mpf:
     return 3 - 2 * mp.sqrt(1 - mp.mpf("0.25") * h_mp)
 
 
+def approx_matt_parker(h: mp.mpf) -> mp.mpf:
+    """
+    Matt Parker's 'Stand-up Maths' Approximation (2020):
+    C ≈ pi * (53/3 * a + 717/35 * b - sqrt(269*a^2 + 667*a*b + 371*b^2))
+    An asymmetric minimax modification of Ramanujan I optimized for moderate aspect
+    ratios a/b in [1, 5] (h in [0, 0.44]), sacrificing circle exactness (37.01 ppm error at h=0).
+    In terms of s = sqrt(h) = (a-b)/(a+b), with 2*a/(a+b) = 1+s and 2*b/(a+b) = 1-s:
+    """
+    h_mp = mp.mpf(h)
+    s = mp.sqrt(h_mp)
+    a_norm = 1 + s
+    b_norm = 1 - s
+    val = (
+        (mp.mpf(53) / mp.mpf(3)) * a_norm
+        + (mp.mpf(717) / mp.mpf(35)) * b_norm
+        - mp.sqrt(269 * (a_norm**2) + 667 * a_norm * b_norm + 371 * (b_norm**2))
+    )
+    return val / 2
+
+
 def approx_hudson_pade(h: mp.mpf) -> mp.mpf:
     """
     Roger W. Hudson (1917) / Padé [1/1] approximation:
@@ -98,6 +118,7 @@ def get_classical_approximations() -> Dict[str, Callable[[mp.mpf], mp.mpf]]:
         "Kepler (1609)": approx_kepler,
         "Peano/Sipos (1792)": approx_peano_sipos,
         "Ramanujan I (1914)": approx_ramanujan_I,
+        "Matt Parker (2020)": approx_matt_parker,
         "Hudson [1/1] (1917)": approx_hudson_pade,
         "Jacobsen-Waadeland [2/2] (1985)": approx_jacobsen_waadeland_pade22,
         "Ramanujan II (1914)": approx_ramanujan_II,

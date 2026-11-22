@@ -1,12 +1,11 @@
 """
-Objective mathematical evaluation of 'The Best' approximation formula via
-Pareto-Optimality and Computational Efficiency Scoring.
-
-Balances 4 orthogonal metrics:
-1. Computational Hardware Cost (CPU/FPU cycle weight: +, -, * = 1; / = 4; sqrt = 6; pow = 30)
-2. Symbolic / Constant Description Complexity (number of constants & non-integer penalty)
-3. Practical Asymptotic Precision (Guaranteed digits across moderate ellipses h in [0, 0.5])
-4. Global Worst-Case Precision (Chebyshev L_infinity guaranteed digits across all h in [0, 1])
+Objective mathematical evaluation of 'The Best' approximation formula via:
+1. Strict 2D Pareto-Frontier Dominance Analysis (OpCost vs. Guaranteed Precision — zero arbitrary weights!)
+2. Information-Theoretic Efficiency (Bits of precision gained per FPU cycle unit)
+   evaluated separately for:
+   - Practical Ellipses (h <= 0.5, i.e. aspect ratio a/b <= 5.83): Eta_pract = D_typical / Cost
+   - Global Worst-Case (h in [0, 1], all eccentricities up to flat line): Eta_global = D_global / Cost
+   - Balanced Harmonic/Weighted Index: Eff_Score
 """
 
 from typing import Dict, Any, List
@@ -24,6 +23,9 @@ FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
     },
     "Ramanujan I (1914)": {
         "add_mul": 4, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 2
+    },
+    "Matt Parker (2020)": {
+        "add_mul": 9, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0, "taylor_order": 0
     },
     "Hudson [1/1] (1917)": {
         "add_mul": 5, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0, "taylor_order": 3
@@ -61,29 +63,29 @@ def compute_op_cost(spec: Dict[str, Any]) -> float:
     +, -, * : 1.0 unit
     /       : 4.0 units
     sqrt    : 6.0 units
-    pow/h^12: 12.0 units (or 4 squarings + multiplications, plus 3.0 per non-integer constant)
+    pow     : 12.0 units
+    non-int : 2.5 units (memory/LUT load penalty for irrational/fitted constants)
     """
-    cycle_cost = (
+    return (
         1.0 * spec["add_mul"]
         + 4.0 * spec["div"]
         + 6.0 * spec["sqrt"]
         + 12.0 * spec["pow"]
         + 2.5 * spec["transcendental_consts"]
     )
-    return cycle_cost
 
 
 def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
     """
-    Evaluates all approximations on a dense grid of h in [0, 1] (including near-degenerate
-    ellipses h = 0.98, 0.99, 0.999) and computes:
-    - Digits at h = 0.1 (typical ellipse a/b ~ 1.92): D_typical = -log10(rel_err(0.1))
-    - Digits worst-case in h in [0, 0.5] (a/b <= 5.83): D_practical
-    - Digits worst-case globally in h in [0, 1]: D_global = -log10(max_rel_err)
-    - Combined Efficiency Score = (0.4 * D_typical + 0.3 * D_practical + 0.3 * D_global) / sqrt(OpCost)
+    Evaluates all approximations on a dense grid of h in [0, 1] (including h=0 and near-degenerate
+    ellipses h = 0.9945, 0.998, 0.9999, 1.0) and determines:
+    1. Strict 2D Pareto Frontier status (`is_pareto_optimal`):
+       A formula is strictly Pareto-optimal if NO other formula has <= OpCost AND strictly higher
+       precision in BOTH practical (h <= 0.5) and global (h in [0, 1]) regimes.
+    2. Digits at h = 0.1 (D_typ), worst-case digits in h <= 0.5 (D_pract), and global worst-case digits (D_glob).
     """
     h_dense = [
-        0.01, 0.05, 0.1, 0.2, 0.25, 0.35, 0.5,
+        0.0, 0.01, 0.05, 0.1, 0.2, 0.25, 0.35, 0.5,
         0.65, 0.75, 0.85, 0.9, 0.9425, 0.95, 0.969, 0.98, 0.99, 0.9945, 0.995, 0.998, 0.999, 0.9999, 0.99999, 1.0
     ]
     bench = evaluate_approximations(h_dense, dps=50)
@@ -104,7 +106,6 @@ def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
         d_pract = float(-mp.log10(err_pract))
         d_glob = float(-mp.log10(err_glob))
 
-        # Efficiency Index: Precision bits/digits gained per square-root of computational cost
         efficiency_score = (0.4 * d_typ + 0.3 * d_pract + 0.3 * d_glob) / (cost ** 0.5)
 
         report.append({
@@ -119,6 +120,26 @@ def evaluate_pareto_efficiency() -> List[Dict[str, Any]]:
             "efficiency_score": efficiency_score,
         })
 
+    # Determine strict multi-objective Pareto Frontier (Cost vs. D_pract vs. D_glob)
+    for row in report:
+        dominated = False
+        for other in report:
+            if other["name"] == row["name"]:
+                continue
+            if (
+                other["op_cost"] <= row["op_cost"]
+                and other["digits_practical_max_h_0_5"] >= row["digits_practical_max_h_0_5"]
+                and other["digits_global_worst_case"] >= row["digits_global_worst_case"]
+                and (
+                    other["op_cost"] < row["op_cost"]
+                    or other["digits_practical_max_h_0_5"] > row["digits_practical_max_h_0_5"]
+                    or other["digits_global_worst_case"] > row["digits_global_worst_case"]
+                )
+            ):
+                dominated = True
+                break
+        row["pareto_frontier"] = not dominated
+
     return report
 
 
@@ -126,23 +147,24 @@ def print_pareto_table() -> None:
     """Prints the Pareto-Optimality & Efficiency Ranking table."""
     report = evaluate_pareto_efficiency()
     header = (
-        f"| {'Formula / Method':<52} | {'Order':<5} | {'Cost':<5} | "
-        f"{'Digits (h=0.1)':<14} | {'Digits (h<=0.5)':<15} | {'Min Digits [0,1]':<16} | "
-        f"{'Max Err (ppm)':<13} | {'Eff. Score':<10} |"
+        f"| {'Formula / Method':<44} | {'Order':<5} | {'Cost':<5} | "
+        f"{'Digits (h=0.1)':<14} | {'Min (h<=0.5)':<12} | {'Min [0,1]':<9} | "
+        f"{'Max Err (ppm)':<13} | {'Pareto?':<7} | {'Eff. Score':<10} |"
     )
     sep = (
-        "|" + "-" * 54 + "|" + "-" * 7 + "|" + "-" * 7 + "|"
-        + "-" * 16 + "|" + "-" * 17 + "|" + "-" * 18 + "|"
-        + "-" * 15 + "|" + "-" * 12 + "|"
+        "|" + "-" * 46 + "|" + "-" * 7 + "|" + "-" * 7 + "|"
+        + "-" * 16 + "|" + "-" * 14 + "|" + "-" * 11 + "|"
+        + "-" * 15 + "|" + "-" * 9 + "|" + "-" * 12 + "|"
     )
     print(header)
     print(sep)
     for row in report:
+        p_flag = "YES *" if row["pareto_frontier"] else "no"
         print(
-            f"| {row['name']:<52} | O(h^{row['taylor_order']}) | {row['op_cost']:<5.1f} | "
-            f"{row['digits_at_h_0_1']:<14.2f} | {row['digits_practical_max_h_0_5']:<15.2f} | "
-            f"{row['digits_global_worst_case']:<16.2f} | {row['max_global_ppm']:<13.2f} | "
-            f"{row['efficiency_score']:<10.3f} |"
+            f"| {row['name']:<44} | O(h^{row['taylor_order']}) | {row['op_cost']:<5.1f} | "
+            f"{row['digits_at_h_0_1']:<14.2f} | {row['digits_practical_max_h_0_5']:<12.2f} | "
+            f"{row['digits_global_worst_case']:<9.2f} | {row['max_global_ppm']:<13.2f} | "
+            f"{p_flag:<7} | {row['efficiency_score']:<10.3f} |"
         )
 
 

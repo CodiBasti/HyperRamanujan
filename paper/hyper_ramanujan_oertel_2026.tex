@@ -5,10 +5,37 @@
 \usepackage{lmodern}
 \usepackage{xcolor}
 \usepackage[margin=2.4cm]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{titlesec}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{hyperref}
+
+\linespread{1.08}
+\setlength{\jot}{7pt}
+\titlespacing*{\section}{0pt}{26pt plus 6pt minus 3pt}{12pt plus 2pt}
+\titlespacing*{\subsection}{0pt}{18pt plus 4pt minus 2pt}{8pt plus 2pt}
+
+\newtheoremstyle{spacious}
+  {14pt}   % Space above
+  {14pt}   % Space below
+  {\itshape} % Body font
+  {}       % Indent amount
+  {\bfseries} % Theorem head font
+  {.}      % Punctuation after theorem head
+  {0.6em}  % Space after theorem head
+  {}       % Theorem head spec
+
+\newtheoremstyle{spaciousdef}
+  {14pt}
+  {14pt}
+  {\normalfont}
+  {}
+  {\bfseries}
+  {.}
+  {0.6em}
+  {}
 
 \hypersetup{
     colorlinks=true,
@@ -19,13 +46,13 @@
     pdfauthor={Sebastian Oertel}
 }
 
+\theoremstyle{spacious}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
+\theoremstyle{spaciousdef}
 \newtheorem{definition}[theorem]{Definition}
-\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
 \title{\textbf{Hyper-Ramanujan (\texttt{HR}) Closed-Form Radical Approximations for the 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area}}
@@ -313,26 +340,27 @@ Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precisi
 
 \begin{table}[htbp]
 \centering
-\caption{2D Ellipse Circumference Pareto-Efficiency \& Precision Benchmark (50-Digit Reference).}
+\caption{2D Ellipse Circumference Strict Pareto-Frontier \& Precision Benchmark (50-Digit Reference). Formulas marked $\checkmark$ lie on the non-dominated 3D Pareto frontier $(\text{OpCost}, D_{h\le 0.5}, D_{[0,1]})$.}
 \label{tab:2d_pareto}
 \small
-\begin{tabular}{@{}lccccccc@{}}
+\begin{tabular}{@{}lcccccccc@{}}
 \toprule
-\textbf{Approximation Formula} & \textbf{Order} & \textbf{\texttt{sqrt}/\texttt{pow}} & \textbf{Cost} & \textbf{Digits ($h=0.1$)} & \textbf{Min ($h \le 0.5$)} & \textbf{Max Err (\texttt{ppm})} & \textbf{Pareto Score} \\
+\textbf{Approximation Formula} & \textbf{Order} & \textbf{\texttt{sqrt}/\texttt{pow}} & \textbf{Cost} & \textbf{Digits ($h=0.1$)} & \textbf{Min ($h \le 0.5$)} & \textbf{Max Err (\texttt{ppm})} & \textbf{Pareto} & \textbf{Score} \\
 \midrule
-Kepler (1609) & $\mathcal{O}(h^1)$ & $1 / 0$ & $13.0$ & $1.30$ & $0.61$ & $607300.92$ & $0.214$ \\
-Peano / Sipos (1792) & $\mathcal{O}(h^1)$ & $1 / 0$ & $13.0$ & $3.31$ & $1.82$ & $178097.25$ & $0.582$ \\
-Ramanujan I (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^2)$ & $1 / 0$ & $10.0$ & $5.69$ & $3.51$ & $4155.03$ & $1.279$ \\
-Hudson $[1/1]$ (1917) & $\mathcal{O}(h^3)$ & $0 / 0$ & $9.0$ & $7.23$ & $4.28$ & $1889.83$ & $1.665$ \\
-Jacobsen--Waadeland $[2/2]$~\cite{JacobsenWaadeland1985} & $\mathcal{O}(h^4)$ & $0 / 0$ & $13.0$ & $8.85$ & $5.12$ & $888.05$ & $1.662$ \\
-Cantrell (2004, $+c\,h^{12}$)~\cite{Cantrell2004} & $\mathcal{O}(h^4)$ & $1 / 0^*$ & $23.5$ & $9.58$ & $5.79$ & $13.74$ & $1.449$ \\
-Ramanujan II (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^4)$ & $1 / 0$ & $15.0$ & $9.58$ & $5.76$ & $402.34$ & $1.698$ \\
+Kepler (1609) & $\mathcal{O}(h^1)$ & $1 / 0$ & $13.0$ & $1.30$ & $0.61$ & $607300.92$ & -- & $0.214$ \\
+Peano / Sipos (1792) & $\mathcal{O}(h^1)$ & $1 / 0$ & $13.0$ & $3.31$ & $1.82$ & $178097.25$ & -- & $0.582$ \\
+Ramanujan I (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^2)$ & $1 / 0$ & $10.0$ & $5.69$ & $3.51$ & $4155.03$ & -- & $1.279$ \\
+Matt Parker (2020)~\cite{Parker2020} & $\mathcal{O}(h^0)$ & $1 / 0$ & $15.0$ & $4.65$ & $3.56$ & $6120.09$ & -- & $0.927$ \\
+Hudson $[1/1]$ (1917) & $\mathcal{O}(h^3)$ & $0 / 0$ & $9.0$ & $7.23$ & $4.28$ & $1889.83$ & $\checkmark$ & $1.665$ \\
+Jacobsen--Waadeland $[2/2]$~\cite{JacobsenWaadeland1985} & $\mathcal{O}(h^4)$ & $0 / 0$ & $13.0$ & $8.85$ & $5.12$ & $888.05$ & $\checkmark$ & $1.662$ \\
+Cantrell (2004, $+c\,h^{12}$)~\cite{Cantrell2004} & $\mathcal{O}(h^4)$ & $1 / 0^*$ & $23.5$ & $9.58$ & $5.79$ & $13.74$ & $\checkmark$ & $1.449$ \\
+Ramanujan II (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^4)$ & $1 / 0$ & $15.0$ & $9.58$ & $5.76$ & $402.34$ & $\checkmark$ & $1.698$ \\
 \midrule
-\textbf{Oertel (2026) [\texttt{HR-6B}]} & $\mathcal{O}(h^6)$ & $1 / 0$ & $28.5$ & $13.13$ & $7.73$ & $11.82$ & $1.695$ \\
-\textbf{Oertel (2026) [\texttt{HR-6M}]} & $\mathcal{O}(h^6)$ & $1 / 0$ & $37.5$ & $13.61$ & $8.34$ & \textbf{$0.30$} & $1.618$ \\
-\textbf{Oertel (2026) [\texttt{HR-8B}]} & $\mathcal{O}(h^8)$ & $1 / 0$ & $32.5$ & $15.31$ & $8.48$ & $9.11$ & $1.786$ \\
-\textbf{Oertel (2026) [\texttt{HR-7-Int}]} & $\mathcal{O}(h^7)$ & $1 / 0$ & $26.0$ & $14.64$ & $8.40$ & $78.05$ & $1.885$ \\
-\textbf{Oertel (2026) [\texttt{HR-8P} $\star$]} & \textbf{$\mathcal{O}(h^8)$} & \textbf{$1 / 0$} & $34.5$ & \textbf{$16.00$} & \textbf{$9.81$} & \textbf{$0.63$} & \textbf{$1.907$ (Rank 1)} \\
+\textbf{Oertel (2026) [\texttt{HR-6B}]} & $\mathcal{O}(h^6)$ & $1 / 0$ & $28.5$ & $13.13$ & $7.73$ & $11.82$ & $\checkmark$ & $1.695$ \\
+\textbf{Oertel (2026) [\texttt{HR-6M}]} & $\mathcal{O}(h^6)$ & $1 / 0$ & $37.5$ & $13.61$ & $8.34$ & \textbf{$0.30$} & $\checkmark$ & $1.618$ \\
+\textbf{Oertel (2026) [\texttt{HR-8B}]} & $\mathcal{O}(h^8)$ & $1 / 0$ & $32.5$ & $15.31$ & $8.48$ & $9.11$ & $\checkmark$ & $1.786$ \\
+\textbf{Oertel (2026) [\texttt{HR-7-Int}]} & $\mathcal{O}(h^7)$ & $1 / 0$ & $26.0$ & $14.64$ & $8.40$ & $78.05$ & $\checkmark$ & $1.885$ \\
+\textbf{Oertel (2026) [\texttt{HR-8P} $\star$]} & \textbf{$\mathcal{O}(h^8)$} & \textbf{$1 / 0$} & $34.5$ & \textbf{$16.00$} & \textbf{$9.81$} & \textbf{$0.63$} & $\checkmark$ & \textbf{$1.907$ (Rank 1)} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -405,6 +433,9 @@ S. S\'ykora, \emph{Advances in approximations of ellipse perimeters and of the c
 
 \bibitem{MichonNumericana}
 G. P. Michon, \emph{Perimeter of an Ellipse \& Surface Area of an Ellipsoid}, Numericana Mathematical Tables (\texttt{http://www.numericana.com/answer/ellipse.htm}).
+
+\bibitem{Parker2020}
+M. Parker, \emph{Why is there no equation for the perimeter of an ellipse?}, Stand-up Maths, 2020 (\texttt{https://www.youtube.com/watch?v=5nW3nJhBHL0}).
 
 \end{thebibliography}
 
