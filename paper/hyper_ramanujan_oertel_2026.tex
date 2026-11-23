@@ -10,6 +10,7 @@
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{hyperref}
 
@@ -339,7 +340,7 @@ S_{\text{HR-3D-10P}}(a,b,c) = 4\pi\,M \left( T_{10}(H, J) + \frac{s^{11}}{9 - 8s
 
 Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precision benchmarks across 2D ellipses and 3D triaxial ellipsoids. In Table~\ref{tab:2d_pareto}, operational cost ($\text{OpCost}$) weights additions/multiplications by $1.0$, divisions by $4.0$, square roots by $6.0$, and non-integer constant loads by $2.5$, while \texttt{MemBits} measures the exact constant-memory footprint (Minimum Description Length: $\lceil\log_2(|n|+1)\rceil+1$ bits per unique integer/rational component plus $64$ bits per precomputed \texttt{float64} constant). $D(h) = -\log_{10}(\varepsilon_{\text{rel}}(h))$ denotes guaranteed decimal digits.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{2D Ellipse Circumference Strict Pareto-Frontier, Constant Memory Footprint (\texttt{MemBits}), \& Precision Benchmark (50-Digit Reference). Formulas marked $\checkmark$ lie on the non-dominated Pareto frontier $(\text{OpCost}, D_{h\le 0.5}, D_{[0,1]})$.}
 \label{tab:2d_pareto}
@@ -368,7 +369,7 @@ Ayala-Raggi--Rend\'on-Mar\'in (\texttt{R2/2exp})~\cite{AyalaRaggi2025} & $\mathc
 }
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}).}
 \label{tab:3d_bench}
