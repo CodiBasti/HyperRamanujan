@@ -62,11 +62,11 @@
 \author{
     \textbf{Sebastian Oertel}\\
     Independent Researcher (\texttt{@CodiBasti})\\
-    ORCID: \href{https://orcid.org/0009-0000-7427-2058}{0009-0000-7427-2058} $\cdot$ DOI: \href{https://doi.org/10.5281/zenodo.24441829}{\texttt{10.5281/zenodo.24441829}}\\
-    Repository: \href{https://github.com/CodiBasti/HyperRamanujan}{\texttt{https://github.com/CodiBasti/HyperRamanujan}}
+    ORCID: \href{https://orcid.org/0009-0000-7427-2058}{0009-0000-7427-2058} $\cdot$ Preprint DOI: \href{https://doi.org/10.5281/zenodo.24462362}{\texttt{10.5281/zenodo.24462362}}\\
+    Code DOI: \href{https://doi.org/10.5281/zenodo.24441829}{\texttt{10.5281/zenodo.24441829}} $\cdot$ Repository: \href{https://github.com/CodiBasti/HyperRamanujan}{\texttt{github.com/CodiBasti/HyperRamanujan}}
 }
 
-\date{November 22, 2026}
+\date{November 23, 2026}
 
 \begin{document}
 
@@ -78,13 +78,13 @@ We investigate the analytical origin of Srinivasa Ramanujan's celebrated 1914 se
 \[
 C(a,b) \approx \pi(a+b)\left(1 + \frac{3h}{10 + \sqrt{4 - 3h}}\right), \qquad h = \left(\frac{a-b}{a+b}\right)^2 \in [0, 1],
 \]
-and resolve the structural mechanism by which a three-parameter radical ansatz matches four consecutive orders ($h^1$ through $h^4$) of the Ivory--Bessel hypergeometric series ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$. By expanding ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right) - 1$ into a canonical Stieltjes continued fraction (S-fraction), we prove that the third and fourth partial denominators are \emph{identically equal} ($a_3 = a_4 = \tfrac{3}{16}$). Closing the continued fraction at depth $3$ via a $1$-periodic quadratic fixed point $T(h) = 1 - \tfrac{3h/16}{T(h)}$ yields Ramanujan's formula directly and accounts for the exact cancellation of the $h^4$ defect.
+and resolve the structural mechanism by which a three-parameter radical ansatz matches four consecutive orders ($h^1$ through $h^4$) of the Ivory--Bessel hypergeometric series ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$. By expanding ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right) - 1$ into a canonical Stieltjes continued fraction (S-fraction), we prove that the third and fourth partial numerators are \emph{identically equal} ($a_3 = a_4 = \tfrac{3}{16}$). Closing the continued fraction at depth $3$ via a $1$-periodic quadratic fixed point $T(h) = 1 - \tfrac{3h/16}{T(h)}$ yields Ramanujan's formula directly and explains the exact cancellation of the $h^4$ defect.
 
-Building on this structure, we isolate the exact inner-radical residual $\delta(h)$ inside $\sqrt{4 - 3h - \delta(h)}$ and prove that its reciprocal admits the rational Taylor expansion
+Building on this structure, we isolate the exact inner-radical residual $\delta(h)$ inside $\sqrt{4 - 3h - \delta(h)}$ and prove that its normalized reciprocal admits the rational Taylor expansion
 \[
 Q(h) = \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 - \frac{1081}{108}\,h^4 + \mathcal{O}(h^5).
 \]
-From this expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $\mathcal{O}(h^8)$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II) and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.633\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero fractional powers. Finally, we generalize the method to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-10P}), proving via Carlson's integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 16.8\text{ ppm}$} ($>630\times$ improvement) without fractional powers.
+From this expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $h^8$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II) and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.633\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls. Finally, we generalize the framework to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-8P} and \texttt{HR-3D-10P}), proving via Carlson's symmetric integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 16.8\text{ ppm}$} globally ($>630\times$ improvement) without fractional powers.
 \end{abstract}
 
 \textbf{Keywords:} Ellipse circumference, triaxial ellipsoid surface area, Ramanujan approximations, Stieltjes continued fractions, Pad\'e approximants, Gauss hypergeometric function, Carlson symmetric elliptic integrals.
@@ -99,11 +99,11 @@ Let an ellipse have semi-major axis $a > 0$ and semi-minor axis $b \in [0, a]$, 
 \begin{equation}\label{eq:h_def}
 h = \left(\frac{a-b}{a+b}\right)^2 \in [0, 1].
 \end{equation}
-The exact circumference $C(a,b)$ is given by the complete elliptic integral of the second kind, $C(a,b) = 4a\,E(e^2) = 4a \int_0^{\pi/2}\sqrt{1 - e^2\sin^2\theta}\,d\theta$. By applying Gauss's quadratic transformation relating the modulus $e^2 = \tfrac{4\sqrt{h}}{(1+\sqrt{h})^2}$ to $h$, James Ivory (1796)~\cite{Ivory1796} and Friedrich Wilhelm Bessel (1825)~\cite{Bessel1825} obtained the hypergeometric representation
+The exact circumference $C(a,b)$ is given by the complete elliptic integral of the second kind, $C(a,b) = 4a\,E(e^2) = 4a \int_0^{\pi/2}\sqrt{1 - e^2\sin^2\theta}\,d\theta$. Applying Gauss's quadratic transformation relating $e^2 = \tfrac{4\sqrt{h}}{(1+\sqrt{h})^2}$ to $h$, James Ivory (1796)~\cite{Ivory1796} and Friedrich Wilhelm Bessel (1825)~\cite{Bessel1825} obtained the rapidly converging hypergeometric representation
 \begin{equation}\label{eq:ivory_bessel}
 F_{\text{exact}}(h) := \frac{C(a,b)}{\pi(a+b)} = {}_2F_1\!\left(-\frac{1}{2}, -\frac{1}{2}; 1; h\right) = \sum_{n=0}^{\infty} c_n\,h^n, \qquad c_n = \binom{1/2}{n}^{\!2} = \left(\frac{(2n-3)!!}{2^n\,n!}\right)^{\!2},
 \end{equation}
-where $(-1)!! = 1$ and $(-3)!! = -1$. Expanding the initial terms explicitly yields:
+with the conventions $(-1)!! = 1$ and $(-3)!! = -1$. Expanding the initial terms explicitly yields:
 \begin{equation}\label{eq:ivory_terms}
 F_{\text{exact}}(h) = 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{256}h^3 + \frac{25}{16384}h^4 + \frac{49}{65536}h^5 + \frac{441}{1048576}h^6 + \frac{1089}{4194304}h^7 + \frac{184041}{1073741824}h^8 + \mathcal{O}(h^9).
 \end{equation}
@@ -138,10 +138,10 @@ Subsequent literature sought to improve upon Eq.~\eqref{eq:ram2} primarily via t
     F_{\text{Cantrell}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h}} + \left(\frac{4}{\pi} - \frac{14}{11}\right)h^{12},
     \end{equation}
     reducing the global maximum relative error from $402.34\text{ ppm}$ to $13.74\text{ ppm}$, while leaving the asymptotic accuracy for moderate ellipses ($h \le 0.5$) unchanged at $\mathcal{O}(h^5)$.
-    \item \textbf{Pure rational, multi-power, and transcendental optimizations:} Jacobsen and Waadeland~\cite{JacobsenWaadeland1985} studied the $[2/2]$ Pad\'e approximant $\tfrac{256 - 48h - 21h^2}{256 - 112h + 3h^2}$ ($888.05\text{ ppm}$), while Stanislav S\'ykora~\cite{Sykora2005,Sykora2007} and Mahmood Shalil Ahmadi~\cite{Sykora2007} explored high-degree minimax rational functions and nested multi-exponent expressions. Most recently, Salvador E. Ayala-Raggi and Manuel Rend\'on-Mar\'in introduced exponential corrections to Ramanujan II (\texttt{R2/2exp}, $0.57\text{ ppm}$ using three \texttt{exp} evaluations and five empirical parameters)~\cite{AyalaRaggi2025} as well as the logarithmic-rational \texttt{ELIP} family (``Bending the Line'', October 2026)~\cite{AyalaRaggi2026ELIP}, which explicitly leverages \texttt{ln}/\texttt{exp} terms to reach sub-ppb bounds at higher transcendental cost.
+    \item \textbf{Pure rational, multi-power, and transcendental optimizations:} Roger W. Hudson~\cite{Hudson1917} introduced the rational formula $(64 - 3h^2)/(64 - 16h)$ ($1889.83\text{ ppm}$), Jacobsen and Waadeland~\cite{JacobsenWaadeland1985} studied the $[2/2]$ Pad\'e approximant $(256 - 48h - 21h^2)/(256 - 112h + 3h^2)$ ($888.05\text{ ppm}$), while Stanislav S\'ykora~\cite{Sykora2005,Sykora2007} and Mahmood Shalil Ahmadi~\cite{Sykora2007} explored high-degree minimax rational functions and nested multi-exponent expressions. Most recently, Salvador E. Ayala-Raggi and Manuel Rend\'on-Mar\'in introduced exponential corrections to Ramanujan II (\texttt{R2/2exp}, $0.57\text{ ppm}$ using three \texttt{exp} evaluations and five empirical parameters)~\cite{AyalaRaggi2025} as well as the logarithmic-rational \texttt{ELIP} family (``Bending the Line'', October 2026)~\cite{AyalaRaggi2026ELIP}, which explicitly leverages \texttt{ln}/\texttt{exp} terms to reach sub-ppb bounds at higher transcendental cost.
 \end{enumerate}
 
-In this paper, we follow a third, purely structural pathway: we retain Ramanujan's single-square-root architecture $1 + \tfrac{3h}{10 + \sqrt{4 - 3h - \delta(h)}}$ and expand the reciprocal of the inner-radical defect $\delta(h)$ analytically.
+In this paper, we follow a third, purely algebraic structural pathway: we retain Ramanujan's single-square-root architecture $1 + \tfrac{3h}{10 + \sqrt{4 - 3h - \delta(h)}}$ and expand the reciprocal of the inner-radical defect $\delta(h)$ analytically. Because $\delta(h)$ sits inside the outer radical denominator, any residual error in approximating $Q(h) = 27h^4/\delta(h)$ is nonlinearly damped by a factor of roughly $540$--$576$ (nearly three orders of magnitude).
 
 \section{Stieltjes Continued Fraction Periodicity of Ramanujan II}
 
@@ -154,7 +154,7 @@ has the exact partial numerator coefficients
 \begin{equation}\label{eq:cf_coeffs}
 a_1 = \frac{1}{4}, \quad a_2 = \frac{1}{16}, \quad \mathbf{a_3 = \frac{3}{16}}, \quad \mathbf{a_4 = \frac{3}{16}}, \quad a_5 = \frac{11}{48}, \quad a_6 = \frac{29}{176}, \quad a_7 = \frac{1509}{7648}.
 \end{equation}
-In particular, $a_3 = a_4 = \frac{3}{16}$ are identically equal. Approximating the continued fraction tail from depth $3$ onwards by a $1$-periodic continued fraction with constant rate $\alpha = a_3 = \frac{3}{16}$ yields Ramanujan's second approximation Eq.~\eqref{eq:ram2} and automatically matches $F_{\text{exact}}(h)$ through $\mathcal{O}(h^4)$.
+In particular, $a_3 = a_4 = \frac{3}{16}$ are identically equal. Approximating the continued fraction tail from depth $3$ onwards by a $1$-periodic continued fraction with constant rate $\alpha = a_3 = \frac{3}{16}$ yields Ramanujan's second approximation Eq.~\eqref{eq:ram2} and automatically matches $F_{\text{exact}}(h)$ through $h^4$.
 \end{theorem}
 
 \begin{proof}
@@ -165,19 +165,19 @@ R_3(h) &= 1 - \frac{h/16}{R_2(h)} = \frac{3}{16}h + \frac{9}{256}h^2 + \frac{35}
 R_4(h) &= 1 - \frac{3h/16}{R_3(h)} = \frac{3}{16}h + \frac{11}{256}h^2 + \mathcal{O}(h^3) &&\implies a_4 = \frac{3}{16},\\
 R_5(h) &= 1 - \frac{3h/16}{R_4(h)} = \frac{11}{48}h + \mathcal{O}(h^2) &&\implies a_5 = \frac{11}{48}.
 \end{align*}
-Because $a_3 = a_4 = \tfrac{3}{16}$, if we replace the denominator $1 - R_3(h)$ at depth $2$ by the $1$-periodic fixed point $T(h)$ satisfying
+Because $a_3 = a_4 = \tfrac{3}{16}$, replacing the denominator $1 - R_3(h)$ at depth $2$ by the $1$-periodic fixed point $T(h)$ satisfying
 \[
 T(h) = 1 - \frac{\frac{3}{16}h}{T(h)} \iff T(h)^2 - T(h) + \frac{3}{16}h = 0,
 \]
-the unique branch satisfying $T(0) = 1$ is
+gives the unique branch satisfying $T(0) = 1$:
 \[
 T(h) = \frac{1 + \sqrt{1 - \frac{3}{4}h}}{2} = \frac{2 + \sqrt{4 - 3h}}{4}.
 \]
-Since the periodic continued fraction $T(h)$ has partial coefficients $[\tfrac{3}{16}, \tfrac{3}{16}, \tfrac{3}{16}, \dots]$, its expansion agrees with $1 - R_3(h)$ across both depth $3$ ($a_3 = \tfrac{3}{16}$) and depth $4$ ($a_4 = \tfrac{3}{16}$). Substituting $1 - R_3(h) \approx T(h)$ into depth $2$ gives:
+Since the periodic continued fraction $T(h)$ has partial numerators $[\tfrac{3}{16}, \tfrac{3}{16}, \tfrac{3}{16}, \dots]$, its expansion agrees with $1 - R_3(h)$ across both depth $3$ ($a_3 = \tfrac{3}{16}$) and depth $4$ ($a_4 = \tfrac{3}{16}$). Substituting $1 - R_3(h) \approx T(h)$ into depth $2$ gives:
 \[
 1 + \frac{a_1 h}{1 - \frac{a_2 h}{T(h)}} = 1 + \frac{\frac{1}{4}h}{1 - \frac{h/16}{(2 + \sqrt{4 - 3h})/4}} = 1 + \frac{h\,(2 + \sqrt{4 - 3h})}{8 + 4\sqrt{4 - 3h} - h}.
 \]
-Rationalizing the numerator by multiplying numerator and denominator by $(10 + \sqrt{4 - 3h})$ and applying the algebraic factorization
+Multiplying numerator and denominator by $(10 + \sqrt{4 - 3h})$ and applying the algebraic factorization
 \[
 (2 + \sqrt{4 - 3h})(10 + \sqrt{4 - 3h}) = 24 - 3h + 12\sqrt{4 - 3h} = 3\,(8 + 4\sqrt{4 - 3h} - h),
 \]
@@ -198,7 +198,7 @@ Then $\delta(h)$ is analytic on $|h| < 1$ with leading order $\mathcal{O}(h^4)$:
 \begin{equation}\label{eq:delta_series}
 \delta(h) = \frac{9}{2048}h^4 + \frac{165}{32768}h^5 + \frac{1191}{262144}h^6 + \frac{32157}{8388608}h^7 + \frac{425373}{134217728}h^8 + \mathcal{O}(h^9),
 \end{equation}
-and the normalized reciprocal $Q(h) := \frac{27\,h^4}{\delta(h)}$ has the Taylor expansion
+and the normalized reciprocal $Q(h) := \frac{27\,h^4}{\delta(h)} = \sum_{k=0}^{\infty} d_k\,h^k$ has the Taylor expansion
 \begin{equation}\label{eq:Q_series}
 Q(h) = \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 - \frac{1081}{108}\,h^4 + \mathcal{O}(h^5).
 \end{equation}
@@ -213,17 +213,17 @@ Let $g(h) = (F_{\text{exact}}(h) - 1)/h = \sum_{n=1}^{\infty} c_n h^{n-1} = \tfr
 \[
 s(h) := \frac{3}{g(h)} - 10 = 2 - \frac{3}{4}h - \frac{9}{64}h^2 - \frac{27}{512}h^3 - \frac{1521}{65536}h^4 - \frac{1467}{131072}h^5 - \frac{11907}{2097152}h^6 - \frac{25245}{8388608}h^7 - \frac{9022437}{536870912}h^8 + \mathcal{O}(h^9).
 \]
-Squaring $s(h)$ yields $s(h)^2 = 4 - 3h - \tfrac{9}{2048}h^4 - \tfrac{165}{32768}h^5 - \tfrac{1191}{262144}h^6 - \tfrac{32157}{8388608}h^7 - \tfrac{425373}{134217728}h^8 + \mathcal{O}(h^9)$, establishing Eq.~\eqref{eq:delta_series}. Factoring out $\tfrac{9}{2048}h^4$:
+Squaring $s(h)$ yields $s(h)^2 = 4 - 3h - \tfrac{9}{2048}h^4 - \tfrac{165}{32768}h^5 - \tfrac{1191}{262144}h^6 - \tfrac{32157}{8388608}h^7 - \tfrac{425373}{134217728}h^8 + \mathcal{O}(h^9)$, establishing Eq.~\eqref{eq:delta_series}. Factoring out $\tfrac{9}{2048}h^4$ and scaling by $27$ (the least common multiple of the leading reciprocal denominators $9$ and $27$) gives:
 \[
 \frac{\delta(h)}{27\,h^4} = \frac{1}{6144}\left(1 + \frac{55}{48}h + \frac{397}{384}h^2 + \frac{3573}{4096}h^3 + \frac{141791}{196608}h^4 + \mathcal{O}(h^5)\right).
 \]
-Inverting this power series via $\left(1 + \sum_{k\ge 1} u_k h^k\right)^{-1} = 1 - u_1 h + (u_1^2 - u_2)h^2 - (u_1^3 - 2u_1 u_2 + u_3)h^3 + \dots$ and multiplying by $6144$ produces the exact rational coefficients of Eq.~\eqref{eq:Q_series}:
+Inverting this power series via $\left(1 + \sum_{k\ge 1} u_k h^k\right)^{-1} = 1 - u_1 h + (u_1^2 - u_2)h^2 - (u_1^3 - 2u_1 u_2 + u_3)h^3 + \dots$ and multiplying by $6144$ produces the exact rational coefficients $d_k$ of Eq.~\eqref{eq:Q_series}:
 \begin{align*}
-c_0 &= 6144,\\
-c_1 &= -6144 \cdot \frac{55}{48} = -7040,\\
-c_2 &= 6144 \left(\frac{3025}{2304} - \frac{397}{384}\right) = 6144 \cdot \frac{643}{2304} = \frac{5144}{3},\\
-c_3 &= -6144 \left(\frac{166375}{110592} - 2\cdot\frac{55}{48}\cdot\frac{397}{384} + \frac{3573}{4096}\right) = -\frac{413}{9},\\
-c_4 &= -\frac{1081}{108}.
+d_0 &= 6144,\\
+d_1 &= -6144 \cdot \frac{55}{48} = -7040,\\
+d_2 &= 6144 \left(\frac{3025}{2304} - \frac{397}{384}\right) = 6144 \cdot \frac{643}{2304} = \frac{5144}{3},\\
+d_3 &= -6144 \left(\frac{166375}{110592} - 2\cdot\frac{55}{48}\cdot\frac{397}{384} + \frac{3573}{4096}\right) = -\frac{413}{9},\\
+d_4 &= -\frac{1081}{108}.
 \end{align*}
 Finally, setting $h = 1$ in Eq.~\eqref{eq:delta_def} and substituting $F_{\text{exact}}(1) = \tfrac{4}{\pi}$ from Proposition~\ref{prop:h1_limit} gives $1 + \tfrac{3}{10 + \sqrt{1 - \delta_1}} = \tfrac{4}{\pi}$, which solves to $\sqrt{1 - \delta_1} = \tfrac{3\pi}{4-\pi} - 10$, yielding Eq.~\eqref{eq:delta1_Q1}.
 \end{proof}
@@ -244,13 +244,13 @@ classified systematically by their matched Taylor order at $h \to 0$ and boundar
     \end{equation}
 
     \item \textbf{\texttt{HR-6B} (Order-6 + Exact $h=1$ Boundary):}
-    Retaining $c_0 = 6144$ and $c_1 = -7040$ (matching through $h^6$) and fixing the quadratic coefficient $B_{\text{exact}}$ so that $Q_{\text{6B}}(1) = \tfrac{27}{\delta_1}$ yields:
+    Retaining $d_0 = 6144$ and $d_1 = -7040$ (matching through $h^6$) and fixing the quadratic coefficient $B_{\text{exact}}$ so that $Q_{\text{6B}}(1) = \tfrac{27}{\delta_1}$ yields:
     \begin{equation}\label{eq:hr6b}
     F_{\text{HR-6B}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\,h^4}{6144 - 7040\,h + B_{\text{exact}}\,h^2}}}, \qquad B_{\text{exact}} = \frac{27}{\delta_1} + 896 \approx 1557.432400939944.
     \end{equation}
 
     \item \textbf{\texttt{HR-8B} (Order-8 + Exact $h=1$ Boundary):}
-    Retaining $c_0, c_1, c_2, c_3$ from Eq.~\eqref{eq:Q_series} (whose exact sum is $6144 - 7040 + \tfrac{5144}{3} - \tfrac{413}{9} = \tfrac{6955}{9}$, matching through $h^8$) and fixing the quartic coefficient $C_{\text{exact}}$ to satisfy $Q_{\text{8B}}(1) = \tfrac{27}{\delta_1}$ gives:
+    Retaining $d_0, d_1, d_2, d_3$ from Eq.~\eqref{eq:Q_series} (whose exact sum is $6144 - 7040 + \tfrac{5144}{3} - \tfrac{413}{9} = \tfrac{6955}{9}$, matching through $h^8$) and fixing the quartic coefficient $C_{\text{exact}}$ to satisfy $Q_{\text{8B}}(1) = \tfrac{27}{\delta_1}$ gives:
     \begin{equation}\label{eq:hr8b}
     F_{\text{HR-8B}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\,h^4}{6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 + C_{\text{exact}}\,h^4}}},
     \end{equation}
@@ -259,7 +259,7 @@ classified systematically by their matched Taylor order at $h \to 0$ and boundar
     \item \textbf{\texttt{HR-8P} $\star$ (Order-8 Singular-Pole Pad\'e $-\tfrac{13}{14}$ + Exact $h=1$ --- Pareto Champion):}
     To capture the steepening of $Q(h)$ near $h \to 1^-$ caused by the logarithmic branch point of ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$, we represent $Q(h)$ as a $[4/1]$ Pad\'e rational function $Q_{\text{8P}}(h) = \frac{p_0 + p_1 h + p_2 h^2 + p_3 h^3 + p_4 h^4}{1 + q_1 h}$ with rational pole parameter $q_1 = -\frac{13}{14}$. Matching Eq.~\eqref{eq:Q_series} through $h^3$ fixes:
     \begin{equation}\label{eq:hr8p_coeffs}
-    p_0 = 6144, \quad p_1 = c_1 + c_0 q_1 = -\frac{89216}{7}, \quad p_2 = c_2 + c_1 q_1 = \frac{173288}{21}, \quad p_3 = c_3 + c_2 q_1 = -\frac{103199}{63},
+    p_0 = 6144, \quad p_1 = d_1 + d_0 q_1 = -\frac{89216}{7}, \quad p_2 = d_2 + d_1 q_1 = \frac{173288}{21}, \quad p_3 = d_3 + d_2 q_1 = -\frac{103199}{63},
     \end{equation}
     whose exact rational sum is $p_0 + p_1 + p_2 + p_3 = \frac{793}{63}$. Enforcing $Q_{\text{8P}}(1) = \frac{27}{\delta_1}$ uniquely determines $p_4 = \frac{27}{14\,\delta_1} - \frac{793}{63} \approx 34.657869910100$, yielding:
     \begin{equation}\label{eq:hr8p}
@@ -267,11 +267,11 @@ classified systematically by their matched Taylor order at $h \to 0$ and boundar
     \end{equation}
 
     \item \textbf{\texttt{HR-6M} (Order-6 Chebyshev-Minimax $[3/1]$ Singular-Pad\'e + Exact $h=1$):}
-    Matching $c_0 = 6144$ and $c_1 = -7040$ (exact through $h^6$) and optimizing the two remaining parameters $(c_{2,\text{eff}}, q_1) = (1660.411404, -0.94542891)$ in a $[3/1]$ rational form for $Q(h)$ to equioscillate the relative error on $[0, 1]$ yields:
+    Matching $d_0 = 6144$ and $d_1 = -7040$ (exact through $h^6$) and optimizing the two remaining parameters $(d_{2,\text{eff}}, q_1) = (1660.411404, -0.94542891)$ in a $[3/1]$ rational form for $Q(h)$ to equioscillate the relative error on $[0, 1]$ yields:
     \begin{equation}\label{eq:hr6m}
     F_{\text{HR-6M}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27(1 + q_1 h)h^4}{6144 + p_1 h + p_2 h^2 + p_3 h^3}}},
     \end{equation}
-    with $p_1 = 6144 q_1 - 7040 \approx -12848.71522304$, $p_2 = c_{2,\text{eff}} - 7040 q_1 \approx 8316.23093040$, and $p_3 = \frac{27(1+q_1)}{\delta_1} - (6144 + p_1 + p_2) \approx -1575.42097149$.
+    with $p_1 = 6144 q_1 - 7040 \approx -12848.71522304$, $p_2 = d_{2,\text{eff}} - 7040 q_1 \approx 8316.23093040$, and $p_3 = \frac{27(1+q_1)}{\delta_1} - (6144 + p_1 + p_2) \approx -1575.42097149$.
 \end{enumerate}
 
 \subsection{Denominator Positivity and Ultra-Flat Boundary Layer Analysis ($\epsilon = 1 - h \to 0^+$)}
@@ -285,18 +285,18 @@ By Abramowitz and Stegun~\cite[(15.3.12)]{AbramowitzStegun1964}, since $\gamma -
 \begin{equation}\label{eq:as_15_3_12}
 F_{\text{exact}}(1 - \epsilon) = \frac{4}{\pi}\left[1 - \frac{1}{4}\epsilon + \frac{\epsilon^2}{32}\left(\ln\frac{16}{\epsilon} - \frac{5}{2}\right) + \frac{9\epsilon^3}{512}\left(\ln\frac{16}{\epsilon} - \frac{13}{6}\right) + \mathcal{O}(\epsilon^4\ln\epsilon)\right].
 \end{equation}
-Because the logarithmic singularity enters at \emph{second} order $\mathcal{O}(\epsilon^2 \ln\epsilon)$ (a consequence of the quadratic relation $1 - e^2 \approx \tfrac{1}{16}(1-h)^2$), the first derivative at $h = 1$ is finite: $F'_{\text{exact}}(1) = \tfrac{1}{\pi} \approx 0.3183098862$, corresponding to the exact boundary derivative $Q'_{\text{exact}}(1) \approx -6223.3408$. Since $Q_{\text{approx}}(1) = Q_{\text{exact}}(1) = \tfrac{27}{\delta_1}$ and $Q'_{\text{approx}}(1)$ is finite (Specifically, $Q'_{\text{8P}}(1) = -5641.20$ and $Q'_{\text{6M}}(1) = -5812.20$), Taylor expansion around $h = 1$ gives
+Because the logarithmic singularity enters at \emph{second} order $\mathcal{O}(\epsilon^2 \ln\epsilon)$ (a consequence of the quadratic relation $1 - e^2 \approx \tfrac{1}{16}(1-h)^2$), the first derivative at $h = 1$ is finite: $F'_{\text{exact}}(1) = \tfrac{1}{\pi} \approx 0.3183098862$, corresponding to the exact boundary derivative $Q'_{\text{exact}}(1) \approx -6223.3408$. Since $Q_{\text{approx}}(1) = Q_{\text{exact}}(1) = \tfrac{27}{\delta_1}$ and $Q'_{\text{approx}}(1)$ is finite (specifically, $Q'_{\text{8P}}(1) = -5641.20$ and $Q'_{\text{6M}}(1) = -5812.20$), Taylor expansion around $h = 1$ yields
 \[
-\frac{|F_{\text{approx}}(1-\epsilon) - F_{\text{exact}}(1-\epsilon)|}{F_{\text{exact}}(1-\epsilon)} = \frac{3\,\delta_1^2}{54\,(4/\pi)\,(10+\sqrt{1-\delta_1})^2\sqrt{1-\delta_1}}\,|Q'_{\text{approx}}(1) - Q'_{\text{exact}}(1)|\,\epsilon + \mathcal{O}(\epsilon^2\ln\epsilon) \approx 6.159 \times 10^{-7}\,|\Delta Q'(1)|\,\epsilon,
+\frac{|F_{\text{approx}}(1-\epsilon) - F_{\text{exact}}(1-\epsilon)|}{F_{\text{exact}}(1-\epsilon)} = \frac{\delta_1^2}{18\,(4/\pi)\,(10+\sqrt{1-\delta_1})^2\sqrt{1-\delta_1}}\,|Q'_{\text{approx}}(1) - Q'_{\text{exact}}(1)|\,\epsilon + \mathcal{O}(\epsilon^2\ln\epsilon) \approx 6.159 \times 10^{-7}\,|\Delta Q'(1)|\,\epsilon,
 \]
 which decays linearly to $0$ as $\epsilon \to 0^+$. Finally, for \texttt{HR-8P}, the quartic denominator $P_4(h) = \sum_{k=0}^4 p_k h^k$ decreases monotonically on $[0, 1]$ from $P_4(0) = 6144$ to $P_4(1) = \tfrac{27}{14\delta_1} \approx 47.24523 > 0$ (its smallest positive real root lies at $h \approx 1.00829 > 1$), guaranteeing strict positivity and numerical stability across $[0, 1]$.
 \end{proof}
 
-\section{Generalization to 3D Triaxial Ellipsoid Surface Area (\texttt{HR-3D-10P})}
+\section{Generalization to 3D Triaxial Ellipsoid Surface Area (\texttt{HR-3D})}
 
 Let a general triaxial ellipsoid have semi-axes $a \ge b \ge c \ge 0$. By B. C. Carlson's theorem~\cite{Carlson1995}, its exact surface area is expressed via Carlson's symmetric elliptic integral of the second kind $R_G$:
 \begin{equation}\label{eq:carlson_rg}
-S(a,b,c) = 4\pi\,R_G(X^2, Y^2, Z^2) = \frac{1}{4\pi}\int_{S^2}\sqrt{X^2 n_x^2 + Y^2 n_y^2 + Z^2 n_z^2}\,d\Omega \cdot 4\pi,
+S(a,b,c) = 4\pi\,R_G(X^2, Y^2, Z^2) = \int_{S^2}\sqrt{X^2 n_x^2 + Y^2 n_y^2 + Z^2 n_z^2}\,d\Omega,
 \end{equation}
 where $X = ab \ge Y = ac \ge Z = bc \ge 0$ are the principal cross-sectional semi-axis products and $M = \frac{X+Y+Z}{3}$.
 
@@ -310,8 +310,8 @@ Then:
     \item The normalized surface area $F_{\text{3D}}(H, J) := \frac{S(a,b,c)}{4\pi\,M} = \frac{R_G(X^2, Y^2, Z^2)}{M}$ admits the exact 10th-order spherical expansion around $(H, J) = (0, 0)$:
     \begin{equation}\label{eq:T10_3d}
     \begin{aligned}
-    T_{10}(H, J) &= 1 + \frac{3}{5}H - \frac{3}{35}J + \frac{3}{35}H^2 - \frac{6}{385}HJ + \frac{171}{5005}H^3 - \frac{3}{715}J^2\\
-    &\quad - \frac{3}{1001}H^2 J - \frac{57}{17017}H J^2 + \frac{27}{1547}H^4 - \frac{15}{46189}J^3 + \frac{36}{46189}H^3 J - \frac{6}{2717}H^2 J^2 + \frac{27}{2717}H^5.
+    T_{10}(H, J) &= \underbrace{1 + \frac{3}{5}H - \frac{3}{35}J + \frac{3}{35}H^2 - \frac{6}{385}HJ + \frac{171}{5005}H^3 - \frac{3}{715}J^2 - \frac{3}{1001}H^2 J - \frac{57}{17017}H J^2 + \frac{27}{1547}H^4}_{T_8(H, J)}\\
+    &\quad - \frac{15}{46189}J^3 + \frac{36}{46189}H^3 J - \frac{6}{2717}H^2 J^2 + \frac{27}{2717}H^5.
     \end{aligned}
     \end{equation}
     \item The dimensionless volume invariant satisfies $\frac{(abc)^2}{M^3} = \frac{XYZ}{M^3} = (1+x)(1+y)(1+z) = 1 - 3H + J$. Consequently, the entire degenerate 3D boundary $Z = bc \to 0$ (comprising all flat elliptical disks $c = 0$ as well as all infinitely elongated triaxial needles $a \to \infty$) corresponds to the line $1 - 3H + J = 0$.
@@ -328,17 +328,18 @@ Expanding $\sqrt{(1+x)^2 n_x^2 + (1+y)^2 n_y^2 + (1+z)^2 n_z^2} = \sqrt{1 + \sum
 \[
 \frac{1}{4\pi}\int_{S^2} n_x^{2i} n_y^{2j} n_z^{2k}\,d\Omega = \frac{(2i-1)!!\,(2j-1)!!\,(2k-1)!!}{(2i+2j+2k+1)!!}
 \]
-produces a symmetric polynomial in $(x, y, z)$. Applying the fundamental theorem of symmetric polynomials with $e_1 = x+y+z = 0$, $e_2 = xy+xz+yz = -3H$, and $e_3 = xyz = J$ yields Eq.~\eqref{eq:T10_3d} (whose denominators factor into consecutive odd primes $5, 7, 11, 13, 17, 19$). Next, expanding $(1+x)(1+y)(1+z) = 1 + e_1 + e_2 + e_3 = 1 - 3H + J$ proves Claim~2. Finally, when $Z = 0$, Carlson's integral $R_G(X^2, Y^2, 0) = \tfrac{1}{2}X\,E(1 - Y^2/X^2) = \tfrac{1}{8}\,C_{\text{2D}}(X, Y)$, so $4\pi\,R_G(X^2, Y^2, 0) = \tfrac{\pi}{2}C_{\text{2D}}(X, Y)$, proving Claim~3.
+produces a symmetric polynomial in $(x, y, z)$. Applying the fundamental theorem of symmetric polynomials with $e_1 = x+y+z = 0$, $e_2 = xy+xz+yz = -3H$, and $e_3 = xyz = J$ yields Eq.~\eqref{eq:T10_3d} (whose denominators factor into consecutive odd primes $5, 7, 11, 13, 17, 19$). Next, expanding $(1+x)(1+y)(1+z) = 1 + e_1 + e_2 + e_3 = 1 - 3H + J$ proves Claim~2. Finally, when $Z = 0$, Carlson's integral reduces to $R_G(X^2, Y^2, 0) = \tfrac{1}{2}X\,E(1 - Y^2/X^2) = \tfrac{1}{8}\,C_{\text{2D}}(X, Y)$, so $4\pi\,R_G(X^2, Y^2, 0) = \tfrac{\pi}{2}C_{\text{2D}}(X, Y)$, proving Claim~3.
 \end{proof}
 
-By projecting any interior ellipsoid $(H, J)$ from the sphere $(0,0)$ along the spherical ray parameter $s = -z = 1 - \frac{Z}{M} \in [0, 1]$ onto the boundary point $(H_b, J_b) = (H/s^2, J/s^3)$ (which satisfies $1 - 3H_b + J_b = 0$ and defines the ray ellipse invariant $h_{\text{ray}} = \frac{4H_b - 1}{3} = \left(\frac{X-Y}{X+Y-2Z}\right)^2 \in [0, 1]$), and coupling Eq.~\eqref{eq:T10_3d} to our 2D formula \texttt{HR-8P} via the singular-pole ray weight $w(s) = \frac{s^{11}}{9 - 8s}$, we obtain \textbf{\texttt{HR-3D-10P}}:
-\begin{equation}\label{eq:hr_3d_10p}
-S_{\text{HR-3D-10P}}(a,b,c) = 4\pi\,M \left( T_{10}(H, J) + \frac{s^{11}}{9 - 8s}\left[\frac{3\pi}{8}\,F_{\text{HR-8P}}(h_{\text{ray}}) - T_{10}(H_b, J_b)\right] \right).
-\end{equation}
+Projecting any interior ellipsoid $(H, J)$ from the spherical origin $(0,0)$ along the ray parameter $s = -z = 1 - \frac{Z}{M} \in [0, 1]$ onto the boundary point $(H_b, J_b) = (H/s^2, J/s^3)$ (which satisfies $1 - 3H_b + J_b = 0$ and defines $h_{\text{ray}} = \frac{4H_b - 1}{3} = \left(\frac{X-Y}{X+Y-2Z}\right)^2 \in [0, 1]$), and coupling the spherical series to our 2D formula \texttt{HR-8P} via singular-pole ray weights $w_8(s) = \frac{s^9}{10 - 9s}$ and $w_{10}(s) = \frac{s^{11}}{9 - 8s}$ yields the two 3D approximations \textbf{\texttt{HR-3D-8P}} and \textbf{\texttt{HR-3D-10P}}:
+\begin{align}
+S_{\text{HR-3D-8P}}(a,b,c) &= 4\pi\,M \left( T_{8}(H, J) + \frac{s^{9}}{10 - 9s}\left[\frac{3\pi}{8}\,F_{\text{HR-8P}}(h_{\text{ray}}) - T_{8}(H_b, J_b)\right] \right), \label{eq:hr_3d_8p}\\
+S_{\text{HR-3D-10P}}(a,b,c) &= 4\pi\,M \left( T_{10}(H, J) + \frac{s^{11}}{9 - 8s}\left[\frac{3\pi}{8}\,F_{\text{HR-8P}}(h_{\text{ray}}) - T_{10}(H_b, J_b)\right] \right). \label{eq:hr_3d_10p}
+\end{align}
 
 \section{Numerical Benchmarks and Pareto-Efficiency Analysis}
 
-Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precision benchmarks across 2D ellipses and 3D triaxial ellipsoids. In Table~\ref{tab:2d_pareto}, operational cost ($\text{OpCost}$) weights additions/multiplications by $1.0$, divisions by $4.0$, square roots by $6.0$, and non-integer constant loads by $2.5$, while \texttt{MemBits} measures the exact constant-memory footprint (Minimum Description Length: $\lceil\log_2(|n|+1)\rceil+1$ bits per unique integer/rational component plus $64$ bits per precomputed \texttt{float64} constant). $D(h) = -\log_{10}(\varepsilon_{\text{rel}}(h))$ denotes guaranteed decimal digits.
+Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precision benchmarks across 2D ellipses and 3D triaxial ellipsoids. In Table~\ref{tab:2d_pareto}, hardware operational cost ($\text{OpCost}$) weights additions/multiplications by $1.0$, divisions by $4.0$, square roots by $6.0$, transcendental \texttt{exp}/\texttt{ln} calls by $15.0$, and non-integer constant loads by $2.5$ (Cantrell's $h^{12}$ is evaluated via $4$ binary-squaring multiplications with zero \texttt{pow} calls). Constant memory footprint (\texttt{MemBits}) measures the exact Minimum Description Length in bits: $\lceil\log_2(|n|+1)\rceil+1$ bits per unique integer/rational component plus $64$ bits per precomputed \texttt{float64} constant. With $D(h) = -\log_{10}(\varepsilon_{\text{rel}}(h))$, the composite efficiency index is $\text{Score} = (0.4\,D_{0.1} + 0.3\,D_{h\le 0.5} + 0.3\,D_{[0,1]})/\sqrt{\text{OpCost}}$, alongside the weight-free strict Pareto frontier ($\checkmark$).
 
 \begin{table}[H]
 \centering
@@ -353,7 +354,7 @@ Kepler (1609) & $\mathcal{O}(h^1)$ & $13.0$ & $5$ & $1.30$ & $0.61$ & $607300.92
 Peano / Sipos (1792) & $\mathcal{O}(h^1)$ & $13.0$ & $8$ & $3.31$ & $1.82$ & $178097.25$ & -- & $0.582$ \\
 Ramanujan I (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^2)$ & $10.0$ & $12$ & $5.69$ & $3.51$ & $4155.03$ & -- & $1.279$ \\
 Matt Parker (2020)~\cite{Parker2020} & $\mathcal{O}(h^0)$ & $15.0$ & $59$ & $4.65$ & $3.56$ & $6120.09$ & -- & $0.927$ \\
-Hudson $[1/1]$ (1917) & $\mathcal{O}(h^3)$ & $9.0$ & $17$ & $7.23$ & $4.28$ & $1889.83$ & $\checkmark$ & $1.665$ \\
+Hudson $[1/1]$ (1917)~\cite{Hudson1917} & $\mathcal{O}(h^3)$ & $9.0$ & $17$ & $7.23$ & $4.28$ & $1889.83$ & $\checkmark$ & $1.665$ \\
 Jacobsen--Waadeland $[2/2]$~\cite{JacobsenWaadeland1985} & $\mathcal{O}(h^4)$ & $13.0$ & $34$ & $8.85$ & $5.12$ & $888.05$ & $\checkmark$ & $1.662$ \\
 Ramanujan II (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^4)$ & $15.0$ & $14$ & $9.58$ & $5.76$ & $402.34$ & $\checkmark$ & $1.698$ \\
 Cantrell (2004, $+c\,h^{12}$)~\cite{Cantrell2004} & $\mathcal{O}(h^4)$ & $23.5$ & $83$ & $9.58$ & $5.79$ & $13.74$ & $\checkmark$ & $1.449$ \\
@@ -371,12 +372,12 @@ Ayala-Raggi--Rend\'on-Mar\'in (\texttt{R2/2exp})~\cite{AyalaRaggi2025} & $\mathc
 
 \begin{table}[H]
 \centering
-\caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}).}
+\caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}). Across extreme high-aspect scalene ratios such as $(100, 5, 1)$, \texttt{HR-3D-10P} maintains a global worst-case error of $16.73\text{ ppm}$ vs.\ $10\,608\text{ ppm}$ for Thomsen ($p=1.6075$).}
 \label{tab:3d_bench}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Triaxial Ellipsoid Semi-Axes $(a, b, c)$} & \textbf{Cantrell ($p=1.6$)} & \textbf{Thomsen ($p=1.6075$)} & \textbf{Oertel [\texttt{HR-3D-8P}]} & \textbf{Oertel [\texttt{HR-3D-10P} $\star$]} \\
+\textbf{Triaxial Ellipsoid Semi-Axes $(a, b, c)$} & \textbf{Cantrell ($p=1.6$)}~\cite{Cantrell2004} & \textbf{Thomsen ($p=1.6075$)}~\cite{Thomsen2004} & \textbf{Oertel [\texttt{HR-3D-8P}]} & \textbf{Oertel [\texttt{HR-3D-10P} $\star$]} \\
 \midrule
 Near-Sphere $(1.2, 1.1, 1.0)$ & $1.25\text{ ppm}$ & $22.02\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
 Moderate Scalene $(2.0, 1.5, 1.0)$ & $224.86\text{ ppm}$ & $522.31\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
@@ -388,12 +389,18 @@ Oblate Spheroid $(10.0, 10.0, 1.0)$ & $7538.71\text{ ppm}$ & $10112.18\text{ ppm
 Extreme Prolate $(50.0, 1.0, 1.0)$ & $11385.12\text{ ppm}$ & $10235.32\text{ ppm}$ & \textbf{$0.42\text{ ppm}$} & \textbf{$0.01\text{ ppm}$} \\
 Extreme Oblate $(50.0, 50.0, 1.0)$ & $7085.10\text{ ppm}$ & $10236.04\text{ ppm}$ & \textbf{$54.66\text{ ppm}$} & \textbf{$9.59\text{ ppm}$} \\
 Flat Circular Disk $(100, 100, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
-Flat Elliptical Disk $(100, 20, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.20\text{ ppm}$} & \textbf{$0.20\text{ ppm}$} \\
+Flat Elliptical Disk $(100, 20, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
 Extreme Triaxial Needle $(1000, 2.0, 1.0)$ & $6769.63\text{ ppm}$ & $5207.80\text{ ppm}$ & \textbf{$0.61\text{ ppm}$} & \textbf{$0.11\text{ ppm}$} \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
+
+\section{Conclusion and Machine Reproducibility}
+
+We demonstrated that the classical order elevation of Ramanujan's 1914 ellipse circumference approximation originates from the exact local periodicity $a_3 = a_4 = \tfrac{3}{16}$ of its Stieltjes continued fraction. By inverting the inner-radical defect $Q(h) = 27h^4/\delta(h)$ and coupling it to a rational singularity pole ($q_1 = -\tfrac{13}{14}$), the \texttt{HR} family achieves sub-ppm global accuracy ($0.633\text{ ppm}$ for \texttt{HR-8P}, $0.299\text{ ppm}$ for \texttt{HR-6M}) and full \texttt{float64} precision for moderate eccentricities without any transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls, strictly dominating recent exponential corrections (\texttt{R2/2exp}) in speed, constant memory, and precision. Moreover, the exact 3D-to-2D boundary reduction $S(a,b,c)|_{Z=0} = \tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$ transfers this advantage directly to general triaxial ellipsoids (\texttt{HR-3D-10P}).
+
+All symbolic proofs over $\mathbb{Q}$, denominator positivity checks, and 50-digit precision bounds are deterministically reproducible via \texttt{python -m tests.verify\_certificates} in the open-source companion repository (\href{https://doi.org/10.5281/zenodo.24441829}{\texttt{DOI:10.5281/zenodo.24441829}}), which also provides a machine-readable \texttt{ai\_discovery\_manifest.json} for automated mathematical agents.
 
 \begin{thebibliography}{99}
 
@@ -405,6 +412,9 @@ F. W. Bessel, \emph{Ueber die Berechnung der geod\"atischen Linien}, Astronomisc
 
 \bibitem{Ramanujan1914}
 S. Ramanujan, \emph{Modular equations and approximations to $\pi$}, Quarterly Journal of Pure and Applied Mathematics \textbf{45} (1914), 350--372.
+
+\bibitem{Hudson1917}
+R. G. Hudson, \emph{The Engineers' Manual}, John Wiley \& Sons, New York, 1917.
 
 \bibitem{AbramowitzStegun1964}
 M. Abramowitz and I. A. Stegun (eds.), \emph{Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables}, National Bureau of Standards, Applied Mathematics Series \textbf{55}, Washington, D.C., 1964.
