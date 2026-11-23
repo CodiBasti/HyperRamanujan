@@ -136,7 +136,7 @@ Subsequent literature sought to improve upon Eq.~\eqref{eq:ram2} primarily via t
     F_{\text{Cantrell}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h}} + \left(\frac{4}{\pi} - \frac{14}{11}\right)h^{12},
     \end{equation}
     reducing the global maximum relative error from $402.34\text{ ppm}$ to $13.74\text{ ppm}$, while leaving the asymptotic accuracy for moderate ellipses ($h \le 0.5$) unchanged at $\mathcal{O}(h^5)$.
-    \item \textbf{Pure rational or multi-power optimizations:} Jacobsen and Waadeland~\cite{JacobsenWaadeland1985} studied the $[2/2]$ Pad\'e approximant $\tfrac{256 - 48h - 21h^2}{256 - 112h + 3h^2}$ ($888.05\text{ ppm}$), while Stanislav S\'ykora~\cite{Sykora2005,Sykora2007} and Mahmood Shalil Ahmadi~\cite{Sykora2007} explored high-degree minimax rational functions and nested multi-exponent expressions.
+    \item \textbf{Pure rational, multi-power, and transcendental optimizations:} Jacobsen and Waadeland~\cite{JacobsenWaadeland1985} studied the $[2/2]$ Pad\'e approximant $\tfrac{256 - 48h - 21h^2}{256 - 112h + 3h^2}$ ($888.05\text{ ppm}$), while Stanislav S\'ykora~\cite{Sykora2005,Sykora2007} and Mahmood Shalil Ahmadi~\cite{Sykora2007} explored high-degree minimax rational functions and nested multi-exponent expressions. Most recently, Salvador E. Ayala-Raggi and Manuel Rend\'on-Mar\'in introduced exponential corrections to Ramanujan II (\texttt{R2/2exp}, $0.57\text{ ppm}$ using three \texttt{exp} evaluations and five empirical parameters)~\cite{AyalaRaggi2025} as well as the logarithmic-rational \texttt{ELIP} family (``Bending the Line'', October 2026)~\cite{AyalaRaggi2026ELIP}, which explicitly leverages \texttt{ln}/\texttt{exp} terms to reach sub-ppb bounds at higher transcendental cost.
 \end{enumerate}
 
 In this paper, we follow a third, purely structural pathway: we retain Ramanujan's single-square-root architecture $1 + \tfrac{3h}{10 + \sqrt{4 - 3h - \delta(h)}}$ and expand the reciprocal of the inner-radical defect $\delta(h)$ analytically.
@@ -355,6 +355,7 @@ Hudson $[1/1]$ (1917) & $\mathcal{O}(h^3)$ & $9.0$ & $17$ & $7.23$ & $4.28$ & $1
 Jacobsen--Waadeland $[2/2]$~\cite{JacobsenWaadeland1985} & $\mathcal{O}(h^4)$ & $13.0$ & $34$ & $8.85$ & $5.12$ & $888.05$ & $\checkmark$ & $1.662$ \\
 Ramanujan II (1914)~\cite{Ramanujan1914} & $\mathcal{O}(h^4)$ & $15.0$ & $14$ & $9.58$ & $5.76$ & $402.34$ & $\checkmark$ & $1.698$ \\
 Cantrell (2004, $+c\,h^{12}$)~\cite{Cantrell2004} & $\mathcal{O}(h^4)$ & $23.5$ & $83$ & $9.58$ & $5.79$ & $13.74$ & $\checkmark$ & $1.449$ \\
+Ayala-Raggi--Rend\'on-Mar\'in (\texttt{R2/2exp})~\cite{AyalaRaggi2025} & $\mathcal{O}(h^4)$ & $88.5$ & $341$ & $9.58$ & $6.65$ & $0.57$ & -- & $0.818$ \\
 \midrule
 \textbf{Oertel (2026) [\texttt{HR-7-Int}]} & $\mathcal{O}(h^7)$ & $26.0$ & \textbf{$68$} & $14.64$ & $8.40$ & $78.05$ & $\checkmark$ & $1.885$ \\
 \textbf{Oertel (2026) [\texttt{HR-6B}]} & $\mathcal{O}(h^6)$ & $28.5$ & $112$ & $13.13$ & $7.73$ & $11.82$ & $\checkmark$ & $1.695$ \\
@@ -436,6 +437,12 @@ G. P. Michon, \emph{Perimeter of an Ellipse \& Surface Area of an Ellipsoid}, Nu
 
 \bibitem{Parker2020}
 M. Parker, \emph{Why is there no equation for the perimeter of an ellipse?}, Stand-up Maths, 2020 (\texttt{https://www.youtube.com/watch?v=5nW3nJhBHL0}).
+
+\bibitem{AyalaRaggi2025}
+S. E. Ayala-Raggi and M. Rend\'on-Mar\'in, \emph{Is simplicity still possible for a more accurate approximation to the perimeter of the ellipse? An exponential correction to Ramanujan's second formula}, \texttt{arXiv:2510.16191v2} [math.NA], 2025 (published in \emph{AppliedMath}, 2026).
+
+\bibitem{AyalaRaggi2026ELIP}
+S. E. Ayala-Raggi and M. Rend\'on-Mar\'in, \emph{Approximating the ellipse perimeter by ``Bending the Line'': The ELIP closed-form family}, \texttt{arXiv:2610.28689} [math.NA], October 2026.
 
 \end{thebibliography}
 

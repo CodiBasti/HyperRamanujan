@@ -103,7 +103,7 @@ def approx_ramanujan_II(h: mp.mpf) -> mp.mpf:
 
 def approx_cantrell_exact_end(h: mp.mpf) -> mp.mpf:
     """
-    David W. Cantrell (2001) modification of Ramanujan II that is exact at h=1 (4/pi):
+    David W. Cantrell (2004) modification of Ramanujan II that is exact at h=1 (4/pi):
     Adds (4/pi - 14/11) * h^12.
     """
     h_mp = mp.mpf(h)
@@ -112,8 +112,27 @@ def approx_cantrell_exact_end(h: mp.mpf) -> mp.mpf:
     return ram2 + defect * (h_mp**12)
 
 
+def approx_ayala_raggi_r2_2exp(h: mp.mpf) -> mp.mpf:
+    """
+    Salvador E. Ayala-Raggi & Manuel Rendón-Marín (2025/2026, arXiv:2510.16191v2, AppliedMath):
+    Transcendental exponential correction to Ramanujan II (`R2/2exp` with sigmoid damping):
+    F(h) = F_RamII(h) / (1 - (A*exp(-B*(1-h)) + C*exp(-D*(1-h))) * sigma(h))
+    where sigma(h) = 1 / (1 + exp(-60*(h - 0.33))).
+    Uses 3 transcendental exp() evaluations + 1 sqrt() + 4 empirically fitted float64 constants.
+    """
+    h_mp = mp.mpf(h)
+    ram2 = approx_ramanujan_II(h_mp)
+    A = mp.mpf("3.37528e-4")
+    B = mp.mpf("10.29662")
+    C = mp.mpf("6.48093e-5")
+    D = mp.mpf("40.89043")
+    sigma = mp.mpf(1) / (1 + mp.exp(-60 * (h_mp - mp.mpf("0.33"))))
+    corr = (A * mp.exp(-B * (1 - h_mp)) + C * mp.exp(-D * (1 - h_mp))) * sigma
+    return ram2 / (1 - corr)
+
+
 def get_classical_approximations() -> Dict[str, Callable[[mp.mpf], mp.mpf]]:
-    """Returns a registry of classical normalized circumference approximations f(h)."""
+    """Returns a registry of classical and modern literature approximations f(h)."""
     return {
         "Kepler (1609)": approx_kepler,
         "Peano/Sipos (1792)": approx_peano_sipos,
@@ -122,5 +141,6 @@ def get_classical_approximations() -> Dict[str, Callable[[mp.mpf], mp.mpf]]:
         "Hudson [1/1] (1917)": approx_hudson_pade,
         "Jacobsen-Waadeland [2/2] (1985)": approx_jacobsen_waadeland_pade22,
         "Ramanujan II (1914)": approx_ramanujan_II,
-        "Cantrell (2001)": approx_cantrell_exact_end,
+        "Cantrell (2004)": approx_cantrell_exact_end,
+        "Ayala-Raggi & Rendon-Marin (2026, R2/2exp)": approx_ayala_raggi_r2_2exp,
     }

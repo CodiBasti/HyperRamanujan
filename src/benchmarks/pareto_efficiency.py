@@ -63,12 +63,16 @@ FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
         "int_consts": [256, 48, 21, 112, 3], "float64_consts": 0, "taylor_order": 4
     },
     "Ramanujan II (1914)": {
-        "add_mul": 5, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
+        "add_mul": 5, "div": 1, "sqrt": 1, "pow": 0, "exp_log": 0, "transcendental_consts": 0,
         "int_consts": [1, 3, 10, 4], "float64_consts": 0, "taylor_order": 4
     },
-    "Cantrell (2001)": {
-        "add_mul": 11, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 1,
+    "Cantrell (2004)": {
+        "add_mul": 11, "div": 1, "sqrt": 1, "pow": 0, "exp_log": 0, "transcendental_consts": 1,
         "int_consts": [1, 3, 10, 4, 12], "float64_consts": 1, "taylor_order": 4
+    },
+    "Ayala-Raggi & Rendon-Marin (2026, R2/2exp)": {
+        "add_mul": 13, "div": 3, "sqrt": 1, "pow": 0, "exp_log": 3, "transcendental_consts": 5,
+        "int_consts": [1, 3, 10, 4, 60], "float64_consts": 5, "taylor_order": 4
     },
     "HR-7-Int (Order-7, pure integers)": {
         "add_mul": 12, "div": 2, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
@@ -101,6 +105,7 @@ def compute_op_cost(spec: Dict[str, Any]) -> float:
     /       : 4.0 units
     sqrt    : 6.0 units
     pow     : 12.0 units
+    exp/log : 15.0 units (transcendental special function call)
     non-int : 2.5 units (memory/LUT load penalty for irrational/fitted constants)
     """
     return (
@@ -108,6 +113,7 @@ def compute_op_cost(spec: Dict[str, Any]) -> float:
         + 4.0 * spec["div"]
         + 6.0 * spec["sqrt"]
         + 12.0 * spec["pow"]
+        + 15.0 * spec.get("exp_log", 0)
         + 2.5 * spec["transcendental_consts"]
     )
 
