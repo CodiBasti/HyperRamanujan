@@ -40,7 +40,7 @@ def compute_mem_bits(spec: Dict[str, Any]) -> int:
 FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
     "Kepler (1609)": {
         "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
-        "int_consts": [1, 2], "float64_consts": 0, "taylor_order": 1
+        "int_consts": [1, 2], "float64_consts": 0, "taylor_order": 0
     },
     "Peano/Sipos (1792)": {
         "add_mul": 3, "div": 1, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
@@ -54,7 +54,7 @@ FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
         "add_mul": 9, "div": 0, "sqrt": 1, "pow": 0, "transcendental_consts": 0,
         "int_consts": [53, 3, 717, 35, 269, 667, 371], "float64_consts": 0, "taylor_order": 0
     },
-    "Hudson [1/1] (1917)": {
+    "Hudson [2/1] (1917)": {
         "add_mul": 5, "div": 1, "sqrt": 0, "pow": 0, "transcendental_consts": 0,
         "int_consts": [64, 3, 16], "float64_consts": 0, "taylor_order": 3
     },
@@ -69,6 +69,14 @@ FORMULA_COMPLEXITY_SPEC: Dict[str, Dict[str, Any]] = {
     "Cantrell (2004)": {
         "add_mul": 11, "div": 1, "sqrt": 1, "pow": 0, "exp_log": 0, "transcendental_consts": 1,
         "int_consts": [1, 3, 10, 4, 12], "float64_consts": 1, "taylor_order": 4
+    },
+    "Shankar A1 (2026)": {
+        "add_mul": 9, "div": 1, "sqrt": 1, "pow": 0, "exp_log": 0, "transcendental_consts": 0,
+        "int_consts": [1, 192, 640, 16384, 12288, 18], "float64_consts": 0, "taylor_order": 5
+    },
+    "Shankar A2 (2026)": {
+        "add_mul": 19, "div": 1, "sqrt": 1, "pow": 0, "exp_log": 0, "transcendental_consts": 1,
+        "int_consts": [128, 48, 15, 6, 80, 3, 32], "float64_consts": 1, "taylor_order": 4
     },
     "Ayala-Raggi & Rendon-Marin (2026, R2/2exp)": {
         "add_mul": 13, "div": 3, "sqrt": 1, "pow": 0, "exp_log": 3, "transcendental_consts": 5,

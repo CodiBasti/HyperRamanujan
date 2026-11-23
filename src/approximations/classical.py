@@ -130,6 +130,31 @@ def approx_ayala_raggi_r2_2exp(h: mp.mpf) -> mp.mpf:
     return ram2 / (1 - corr)
 
 
+def approx_shankar_a1(h: mp.mpf) -> mp.mpf:
+    """
+    Uday Shankar (March 2026, arXiv:2603.03373, Attempt 1):
+    Leading-order inner-radical perturbation of Ramanujan II matching through h^5:
+    F(h) = 1 + 192*h / (640 + sqrt(16384 - 12288*h - 18*h^4))
+         = 1 + 3*h / (10 + sqrt(4 - 3*h - (9/2048)*h^4)).
+    """
+    h_mp = mp.mpf(h)
+    return 1 + (192 * h_mp) / (640 + mp.sqrt(16384 - 12288 * h_mp - 18 * (h_mp**4)))
+
+
+def approx_shankar_a2(h: mp.mpf) -> mp.mpf:
+    """
+    Uday Shankar (March 2026, arXiv:2603.03373, Attempt 2):
+    Depth-4 Stieltjes continued fraction closed with constant empirical tail rate 0.915/4:
+    F(h) = ((128 - 48*h - 15*h^2) + (128 - 6*h^2)*S) / ((128 - 80*h + 3*h^2) + (128 - 32*h)*S),
+    where S = sqrt(1 - 0.915*h). Matches through h^4 (near-h^5 via 0.915/4 ~= 11/48).
+    """
+    h_mp = mp.mpf(h)
+    S = mp.sqrt(1 - mp.mpf("0.915") * h_mp)
+    num = (128 - 48 * h_mp - 15 * (h_mp**2)) + (128 - 6 * (h_mp**2)) * S
+    den = (128 - 80 * h_mp + 3 * (h_mp**2)) + (128 - 32 * h_mp) * S
+    return num / den
+
+
 def get_classical_approximations() -> Dict[str, Callable[[mp.mpf], mp.mpf]]:
     """Returns a registry of classical and modern literature approximations f(h)."""
     return {
@@ -137,9 +162,11 @@ def get_classical_approximations() -> Dict[str, Callable[[mp.mpf], mp.mpf]]:
         "Peano/Sipos (1792)": approx_peano_sipos,
         "Ramanujan I (1914)": approx_ramanujan_I,
         "Matt Parker (2020)": approx_matt_parker,
-        "Hudson [1/1] (1917)": approx_hudson_pade,
+        "Hudson [2/1] (1917)": approx_hudson_pade,
         "Jacobsen-Waadeland [2/2] (1985)": approx_jacobsen_waadeland_pade22,
         "Ramanujan II (1914)": approx_ramanujan_II,
         "Cantrell (2004)": approx_cantrell_exact_end,
+        "Shankar A1 (2026)": approx_shankar_a1,
+        "Shankar A2 (2026)": approx_shankar_a2,
         "Ayala-Raggi & Rendon-Marin (2026, R2/2exp)": approx_ayala_raggi_r2_2exp,
     }
