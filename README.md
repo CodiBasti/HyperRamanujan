@@ -1,11 +1,13 @@
 # Hyper-Ramanujan (`HR`) Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24441829.svg)](https://doi.org/10.5281/zenodo.24441829)
+[![Preprint PDF DOI](https://img.shields.io/badge/Preprint%20PDF-10.5281%2Fzenodo.24462362-007ec6)](https://doi.org/10.5281/zenodo.24462362)
+[![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24441829.svg)](https://doi.org/10.5281/zenodo.24441829)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--7427--2058-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0000-7427-2058)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Author:** Sebastian Oertel ([@CodiBasti](https://github.com/CodiBasti) • [ORCID: 0009-0000-7427-2058](https://orcid.org/0009-0000-7427-2058))  
-**Permanent Zenodo DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
+**Preprint Paper (PDF) DOI:** [`10.5281/zenodo.24462362`](https://doi.org/10.5281/zenodo.24462362)  
+**Software & Verification Code DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
 **Machine-Readable AI Discovery Manifest:** [`ai_discovery_manifest.json`](ai_discovery_manifest.json)  
 **Deterministic Dual-Certificate Verification:** [`tests/verify_certificates.py`](tests/verify_certificates.py) ([`certificates/verification_report.json`](certificates/verification_report.json))  
 **Full Research Paper:** [`paper/hyper_ramanujan_oertel_2026.md`](paper/hyper_ramanujan_oertel_2026.md)  
