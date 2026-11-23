@@ -1,7 +1,7 @@
 # Closed-Form Radical Approximations for the Ellipse Circumference and Triaxial Ellipsoid Surface Area: Continued Fraction Periodicity of Ramanujan II and Singular-Pole Hyper-Ramanujan (`HR`) Extensions
 
 **Author:** Sebastian Oertel ([@CodiBasti](https://github.com/CodiBasti) • [ORCID: 0009-0000-7427-2058](https://orcid.org/0009-0000-7427-2058))  
-**Preprint DOI:** [`10.5281/zenodo.24462362`](https://doi.org/10.5281/zenodo.24462362) • **Code DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
+**Preprint Concept DOI:** [`10.5281/zenodo.24462361`](https://doi.org/10.5281/zenodo.24462361) • **Code DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
 **Repository:** `https://github.com/CodiBasti/HyperRamanujan`  
 **Date:** November 2026  
 
@@ -23,7 +23,7 @@ $$
 \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 - \frac{1081}{108}\,h^4 + \mathcal{O}(h^5)
 $$
 
-From this expansion we derive five novel single-radical Hyper-Ramanujan approximations (**`HR-7-Int`**, **`HR-6B`**, **`HR-8B`**, **`HR-8P`**, and **`HR-6M`**), culminating in the singular-pole Padé radical **`HR-8P`** with pole factor $1 - \frac{13}{14}h$ that matches the Taylor series up to $\mathcal{O}(h^9)$, evaluates **identically to the exact degenerate limit $4/\pi$ at $h=1$**, reaches full IEEE-754 `float64` machine precision ($1.15 \times 10^{-17}$) at moderate eccentricities, and slashes the global maximum error across all $h \in [0, 1]$ from 402.34 ppm (Ramanujan II) down to **0.63 ppm** (**`HR-8P`**) and **0.30 ppm** (**`HR-6M`**) using only a single square root. Finally, we generalize the method to the 3D surface area of a triaxial ellipsoid (**`HR-3D-10P`**), proving that the entire 3D degenerate boundary reduces identically to $\frac{\pi}{2}C_{\text{2D}}(ab, ac)$ and slashing Knud Thomsen's 2004 power-mean error (10,608 ppm) down to **< 16.8 ppm** without fractional powers.
+From this expansion we derive five novel single-radical Hyper-Ramanujan approximations (**`HR-7-Int`**, **`HR-6B`**, **`HR-8B`**, **`HR-8P`**, and **`HR-6M`**), culminating in the singular-pole Padé radical **`HR-8P`** with pole factor $1 - \frac{13}{14}h$ that matches the Taylor series up to $\mathcal{O}(h^9)$, evaluates **identically to the exact degenerate limit $4/\pi$ at $h=1$**, reaches full IEEE-754 `float64` machine precision ($1.15 \times 10^{-17}$) at moderate eccentricities, and slashes the global maximum error across all $h \in [0, 1]$ from 402.34 ppm (Ramanujan II) down to **0.628 ppm** (**`HR-8P`**) and **0.299 ppm** (**`HR-6M`**) using only a single square root. Finally, we generalize the method to the 3D surface area of a triaxial ellipsoid (**`HR-3D-10P`**), proving that the entire 3D degenerate boundary reduces identically to $\frac{\pi}{2}C_{\text{2D}}(ab, ac)$ and slashing Knud Thomsen's 2004 power-mean error (10,608 ppm) down to **< 25.2 ppm** (`25.14 ppm` global worst-case, $>420\times$ improvement) without fractional powers.
 
 ---
 

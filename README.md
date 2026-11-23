@@ -1,12 +1,12 @@
 # Hyper-Ramanujan (`HR`) Approximations for 2D Ellipse Circumference and 3D Triaxial Ellipsoid Surface Area
 
-[![Preprint PDF DOI](https://img.shields.io/badge/Preprint%20PDF-10.5281%2Fzenodo.24462362-007ec6)](https://doi.org/10.5281/zenodo.24462362)
+[![Preprint PDF DOI](https://img.shields.io/badge/Preprint%20PDF-10.5281%2Fzenodo.24462361-007ec6)](https://doi.org/10.5281/zenodo.24462361)
 [![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24441829.svg)](https://doi.org/10.5281/zenodo.24441829)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--7427--2058-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0000-7427-2058)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Author:** Sebastian Oertel ([@CodiBasti](https://github.com/CodiBasti) • [ORCID: 0009-0000-7427-2058](https://orcid.org/0009-0000-7427-2058))  
-**Preprint Paper (PDF) DOI:** [`10.5281/zenodo.24462362`](https://doi.org/10.5281/zenodo.24462362)  
+**Preprint Paper (PDF) Concept DOI:** [`10.5281/zenodo.24462361`](https://doi.org/10.5281/zenodo.24462361)  
 **Software & Verification Code DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
 **Machine-Readable AI Discovery Manifest:** [`ai_discovery_manifest.json`](ai_discovery_manifest.json)  
 **Deterministic Dual-Certificate Verification:** [`tests/verify_certificates.py`](tests/verify_certificates.py) ([`certificates/verification_report.json`](certificates/verification_report.json))  
@@ -24,10 +24,10 @@ This repository contains the symbolic derivations, machine-verified certificates
 Expanding the reduced Gauss–Kummer / Ivory–Bessel hypergeometric series ${}_2F_1(-1/2, -1/2; 1; h) - 1$ with $h = ((a-b)/(a+b))^2 \in [0, 1]$ into a regular Stieltjes continued fraction yields the exact partial coefficients:
 
 $$
-[a_1, a_2, a_3, a_4, a_5, a_6] = \left[\frac{1}{4},\; \frac{1}{16},\; \mathbf{\frac{3}{16}},\; \mathbf{\frac{3}{16}},\; \frac{11}{48},\; \frac{29}{176}\right]
+[a_1, a_2, a_3, a_4, a_5, a_6, a_7] = \left[\frac{1}{4},\; \frac{1}{16},\; \mathbf{\frac{3}{16}},\; \mathbf{\frac{3}{16}},\; \frac{11}{48},\; \frac{115}{528},\; \frac{14627}{60720}\right]
 $$
 
-Because $a_3 = a_4 = 3/16$ are identically equal, closing the continued fraction at depth 3 with a 1-periodic quadratic fixed point $T(h) = 1 - \frac{3h/16}{T(h)} = \frac{2 + \sqrt{4 - 3h}}{4}$ directly produces Ramanujan's famous second formula $1 + \frac{3h}{10 + \sqrt{4 - 3h}}$ and explains why 3 parameters automatically match 4 consecutive orders from $h^1$ through $h^4$.
+Because $a_3 = a_4 = 3/16$ are identically equal (also derived independently via Viscovatov's algorithm by Uday Shankar, March 2026, `arXiv:2603.03373`), closing the continued fraction at depth 3 with a 1-periodic quadratic fixed point $T(h) = 1 - \frac{3h/16}{T(h)} = \frac{2 + \sqrt{4 - 3h}}{4}$ directly produces Ramanujan's famous second formula $1 + \frac{3h}{10 + \sqrt{4 - 3h}}$ and explains why 3 parameters automatically match 4 consecutive orders from $h^1$ through $h^4$.
 
 ---
 
@@ -42,7 +42,7 @@ $$
 Evaluating at the degenerate flat-ellipse limit $h = 1$ (where $b = 0$ and $\frac{C}{\pi(a+b)} = \frac{4}{\pi}$) fixes the exact boundary constant:
 
 $$
-\delta_1 = 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^2 \approx 0.04082049844879468, \qquad Q(1) = \frac{27}{\delta_1} \approx 661.4324009399441
+\delta_1 = 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^2 \approx 0.04082049800044723, \qquad Q(1) = \frac{27}{\delta_1} \approx 661.4324009399441
 $$
 
 #### The Five 2D Hyper-Ramanujan (`HR`) Formulas (Oertel, 2026)
@@ -50,10 +50,10 @@ $$
 1. **`HR-8P` ★ (Order-8 Singular-Pole Padé $-13/14$ + Exact $h=1$ — Pareto Champion):**
 
 $$
-\frac{C(a,b)}{\pi(a+b)} \approx 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\left(1 - \frac{13}{14}h\right)h^4}{6144 - \frac{89216}{7}\,h + \frac{173288}{21}\,h^2 - \frac{103199}{63}\,h^3 + p_4\,h^4}}}, \qquad p_4 = \frac{27}{14\,\delta_1} - \frac{793}{63} \approx 34.6578699101
+\frac{C(a,b)}{\pi(a+b)} \approx 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\left(1 - \frac{13}{14}h\right)h^4}{6144 - \frac{89216}{7}\,h + \frac{173288}{21}\,h^2 - \frac{103199}{63}\,h^3 + p_4\,h^4}}}, \qquad p_4 = \frac{27}{14\,\delta_1} - \frac{793}{63} \approx 34.657869908409
 $$
 
-> Matches $h^0 \dots h^8$ with residual $\mathcal{O}(h^9)$, evaluates exactly to $4/\pi$ at $h=1$, achieves full 16-digit IEEE-754 `float64` precision for $h \le 0.1$, and bounds the global maximum error across all $h \in [0, 1]$ to **0.633 ppm** using only **1 square root and 0 powers**.
+> Matches $h^0 \dots h^8$ with residual $\mathcal{O}(h^9)$, evaluates exactly to $4/\pi$ at $h=1$, achieves full 16-digit IEEE-754 `float64` precision for $h \le 0.1$, and bounds the global maximum error across all $h \in [0, 1]$ to **0.628 ppm** using only **1 square root and 0 powers**.
 
 2. **`HR-7-Int` (Order-7 Pure Integer Rational-Radical):**
 
@@ -85,7 +85,7 @@ $$
 \frac{C(a,b)}{\pi(a+b)} \approx 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27(1 + q_1 h)h^4}{6144 + p_1 h + p_2 h^2 + p_3 h^3}}}
 $$
 
-> With $q_1 = -0.94542891$, $p_1 = -12848.71522304$, $p_2 = 8316.2309304$, and $p_3 = -1575.42097149$. Global maximum error across all $h \in [0, 1]$: **0.299 ppm**.
+> With $q_1 = -0.94542891$, $p_1 = -12848.71522304$, $p_2 = 8316.23093040$, and $p_3 = -1575.42062028$. Global maximum error across all $h \in [0, 1]$: **0.299 ppm**.
 
 ---
 
@@ -111,7 +111,7 @@ $$
 S(a,b,c) \approx 4\pi\,M \left( T_{10}(H, J) + \frac{s^{11}}{9 - 8s}\left[\frac{3\pi}{8}\,F_{\text{2D, HR-8P}}(h_{\text{ray}}) - T_{10}(H_b, J_b)\right] \right)
 $$
 
-> Slashes Knud Thomsen's 2004 power-mean error (10,608 ppm, 4 fractional `pow` calls) down to **< 16.8 ppm** (> 630× improvement) using **1 square root and 0 fractional powers**.
+> Slashes Knud Thomsen's 2004 power-mean error (10,608 ppm, 4 fractional `pow` calls) down to **< 25.2 ppm** (`25.14 ppm` global worst-case at `a:b:c = 51.3:6.94:1`, **> 420× improvement**) using **1 square root and 0 fractional powers**.
 
 ---
 
@@ -119,22 +119,24 @@ $$
 
 A formula lies on the **strict 2D Pareto Frontier (`YES *`)** if no other formula achieves higher or equal accuracy in both the practical regime (`h <= 0.5`) and global worst-case regime (`h in [0, 1]`) at lower or equal computational cost (`Op Cost`). **`MemBits`** measures the exact constant-memory footprint (Minimum Description Length in bits: $\lceil \log_2(|n|+1)\rceil + 1$ per unique integer/rational component plus `64` bits per precomputed `float64` literal in `.rodata`).
 
-| Approximation Formula | Taylor Order | `sqrt` / `pow` | Op Cost | **`MemBits`** | Digits (`h=0.1`) | Min Digits (`h <= 0.5`) | Max Global Error (`ppm`) | **Pareto?** | **Score** |
+| Approximation Formula | Exact thru | `sqrt` / `pow` | Op Cost | **`MemBits`** | Digits (`h=0.1`) | Min Digits (`h <= 0.5`) | Max Global Error (`ppm`) | **Pareto?** | **Score** |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Kepler (1609)** | `O(h¹)` | `1` / `0` | `13.0` | `5` | 1.30 | 0.61 | `607300.92` | `no` | `0.214` |
-| **Peano/Sipos (1792)** | `O(h¹)` | `1` / `0` | `13.0` | `8` | 3.31 | 1.82 | `178097.25` | `no` | `0.582` |
-| **Ramanujan I (1914)** | `O(h²)` | `1` / `0` | `10.0` | `12` | 5.69 | 3.51 | `4155.03` | `no` | `1.279` |
-| **Matt Parker (2020)** | `O(h⁰)` | `1` / `0` | `15.0` | `59` | 4.65 | 3.56 | `6120.09` | `no` | `0.927` |
-| **Hudson [1/1] (1917)** | `O(h³)` | `0` / `0` | `9.0` | `17` | 7.23 | 4.28 | `1889.83` | **`YES *`** | `1.665` |
-| **Jacobsen-Waadeland [2/2] (1985)** | `O(h⁴)` | `0` / `0` | `13.0` | `34` | 8.85 | 5.12 | `888.05` | **`YES *`** | `1.662` |
-| **Ramanujan II (1914)** | `O(h⁴)` | `1` / `0` | `15.0` | `14` | 9.58 | 5.76 | `402.34` | **`YES *`** | `1.698` |
-| **Cantrell (2004, `+c·h¹²`)** | `O(h⁴)` | `1` / `0` | `23.5` | `83` | 9.58 | 5.79 | `13.74` | **`YES *`** | `1.449` |
-| **Ayala-Raggi & Rendón-Marín (2026, `R2/2exp`)** | `O(h⁴)` | `1` / `3 exp` | `88.5` | `341` | 9.58 | 6.65 | `0.57` | `no` | `0.818` |
-| **Oertel (2026) [`HR-7-Int`]** | `O(h⁷)` | `1` / `0` | `26.0` | **`68`** | 14.64 | 8.40 | `78.05` | **`YES *`** | `1.885` |
-| **Oertel (2026) [`HR-6B`]** | `O(h⁶)` | `1` / `0` | `28.5` | `112` | 13.13 | 7.73 | `11.82` | **`YES *`** | `1.695` |
-| **Oertel (2026) [`HR-8B`]** | `O(h⁸)` | `1` / `0` | `32.5` | `141` | 15.31 | 8.48 | `9.11` | **`YES *`** | `1.786` |
-| **Oertel (2026) [`HR-8P` ★]** | **`O(h⁸)`** | **`1` / `0`** | `34.5` | `180` | **16.00** | **9.81** | **`0.63`** | **`YES *`** | **`1.907` (Rank 1)** |
-| **Oertel (2026) [`HR-6M`]** | `O(h⁶)` | `1` / `0` | `37.5` | `290` | 13.61 | 8.34 | **`0.30`** | **`YES *`** | `1.618` |
+| **Kepler (1609)** | `h⁰` | `1` / `0` | `13.0` | `5` | 1.30 | 0.61 | `607300.92` | `no` | `0.214` |
+| **Peano/Sipos (1792)** | `h¹` | `1` / `0` | `13.0` | `8` | 3.31 | 1.82 | `178097.25` | `no` | `0.582` |
+| **Ramanujan I (1914)** | `h²` | `1` / `0` | `10.0` | `12` | 5.69 | 3.51 | `4155.03` | `no` | `1.279` |
+| **Matt Parker (2020)** | `--` | `1` / `0` | `15.0` | `59` | 4.65 | 3.56 | `6120.09` | `no` | `0.927` |
+| **Hudson [2/1] (1917)** | `h³` | `0` / `0` | `9.0` | `17` | 7.23 | 4.28 | `1889.83` | **`YES *`** | `1.665` |
+| **Jacobsen-Waadeland [2/2] (1985)** | `h⁴` | `0` / `0` | `13.0` | `34` | 8.85 | 5.12 | `888.05` | **`YES *`** | `1.662` |
+| **Ramanujan II (1914)** | `h⁴` | `1` / `0` | `15.0` | `14` | 9.58 | 5.76 | `402.34` | **`YES *`** | `1.698` |
+| **Cantrell (2004, `+c·h¹²`)** | `h⁴` | `1` / `0` | `23.5` | `83` | 9.58 | 5.79 | `13.74` | **`YES *`** | `1.449` |
+| **Shankar A1 (2026, `arXiv:2603.03373`)** | `h⁵` | `1` / `0` | `19.0` | `59` | 10.53 | 6.06 | `359.50` | **`YES *`** | `1.620` |
+| **Shankar A2 (2026, `arXiv:2603.03373`)** | `h⁴` | `1` / `0` | `31.5` | `107` | 12.00 | 7.43 | `25.49` | `no` | `1.497` |
+| **Ayala-Raggi & Rendón-Marín (2026, `R2/2exp`)** | `h⁴` | `1` / `3 exp` | `88.5` | `341` | 9.58 | 6.65 | `0.57` | `no` | `0.818` |
+| **Oertel (2026) [`HR-7-Int`]** | `h⁷` | `1` / `0` | `26.0` | **`68`** | 14.64 | 8.40 | `78.05` | **`YES *`** | `1.885` |
+| **Oertel (2026) [`HR-6B`]** | `h⁶` | `1` / `0` | `28.5` | `112` | 13.13 | 7.73 | `11.82` | **`YES *`** | `1.695` |
+| **Oertel (2026) [`HR-8B`]** | `h⁸` | `1` / `0` | `32.5` | `141` | 15.31 | 8.48 | `9.11` | **`YES *`** | `1.786` |
+| **Oertel (2026) [`HR-8P` ★]** | **`h⁸`** | **`1` / `0`** | `34.5` | `180` | **16.00** | **9.81** | **`0.63`** | **`YES *`** | **`1.907` (Rank 1)** |
+| **Oertel (2026) [`HR-6M`]** | `h⁶` | `1` / `0` | `37.5` | `290` | 13.61 | 8.34 | **`0.30`** | **`YES *`** | `1.618` |
 
 ---
 
