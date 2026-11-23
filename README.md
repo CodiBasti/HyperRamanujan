@@ -15,7 +15,7 @@
 
 ## Overview & Key Discoveries
 
-This repository contains the symbolic derivations, machine-verified certificates, and 50-digit precision benchmarks for the **Hyper-Ramanujan (`HR`)** family of closed-form approximations for the circumference of a 2D ellipse and the surface area of a 3D triaxial ellipsoid (Oertel, 2026).
+This repository contains the symbolic derivations, machine-verified certificates, and 50-digit precision benchmarks for the **Hyper-Ramanujan (`HR`)** family of closed-form approximations for the circumference of a 2D ellipse and the surface area of a 3D triaxial ellipsoid (Oertel, 2026). Unlike recent transcendental approaches (e.g., Ayala-Raggi & Rendón-Marín 2026 `R2/2exp` and `ELIP`, `arXiv:2610.28689`) that rely on `exp`/`ln` evaluations, the `HR` family remains strictly algebraic (`1x sqrt`, `0x exp/ln/pow`) while achieving sub-ppm global accuracy (`0.63 ppm` / `0.30 ppm`) and full 16-digit `float64` precision for moderate ellipses.
 
 ### 1. Exact Continued-Fraction Periodicity of Ramanujan II (1914)
 

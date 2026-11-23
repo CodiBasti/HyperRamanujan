@@ -10,6 +10,7 @@
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{graphicx}
 \usepackage{hyperref}
 
 \linespread{1.08}
@@ -342,7 +343,7 @@ Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precisi
 \centering
 \caption{2D Ellipse Circumference Strict Pareto-Frontier, Constant Memory Footprint (\texttt{MemBits}), \& Precision Benchmark (50-Digit Reference). Formulas marked $\checkmark$ lie on the non-dominated Pareto frontier $(\text{OpCost}, D_{h\le 0.5}, D_{[0,1]})$.}
 \label{tab:2d_pareto}
-\footnotesize
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccccccc@{}}
 \toprule
 \textbf{Approximation Formula} & \textbf{Order} & \textbf{Cost} & \textbf{\texttt{MemBits}} & \textbf{Digits ($h=0.1$)} & \textbf{Min ($h \le 0.5$)} & \textbf{Max Err (\texttt{ppm})} & \textbf{Pareto} & \textbf{Score} \\
@@ -363,14 +364,15 @@ Ayala-Raggi--Rend\'on-Mar\'in (\texttt{R2/2exp})~\cite{AyalaRaggi2025} & $\mathc
 \textbf{Oertel (2026) [\texttt{HR-8P} $\star$]} & \textbf{$\mathcal{O}(h^8)$} & $34.5$ & $180$ & \textbf{$16.00$} & \textbf{$9.81$} & \textbf{$0.63$} & $\checkmark$ & \textbf{$1.907$ (Rank 1)} \\
 \textbf{Oertel (2026) [\texttt{HR-6M}]} & $\mathcal{O}(h^6)$ & $37.5$ & $290$ & $13.61$ & $8.34$ & \textbf{$0.30$} & $\checkmark$ & $1.618$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \begin{table}[htbp]
 \centering
 \caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}).}
 \label{tab:3d_bench}
-\small
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 \textbf{Triaxial Ellipsoid Semi-Axes $(a, b, c)$} & \textbf{Cantrell ($p=1.6$)} & \textbf{Thomsen ($p=1.6075$)} & \textbf{Oertel [\texttt{HR-3D-8P}]} & \textbf{Oertel [\texttt{HR-3D-10P} $\star$]} \\
@@ -388,7 +390,8 @@ Flat Circular Disk $(100, 100, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$
 Flat Elliptical Disk $(100, 20, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.20\text{ ppm}$} & \textbf{$0.20\text{ ppm}$} \\
 Extreme Triaxial Needle $(1000, 2.0, 1.0)$ & $6769.63\text{ ppm}$ & $5207.80\text{ ppm}$ & \textbf{$0.61\text{ ppm}$} & \textbf{$0.11\text{ ppm}$} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \begin{thebibliography}{99}
