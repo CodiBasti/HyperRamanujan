@@ -74,17 +74,17 @@
 
 \begin{abstract}
 \noindent
-We investigate the analytical origin of Srinivasa Ramanujan's celebrated 1914 second approximation for the circumference of an ellipse,
+Srinivasa Ramanujan's celebrated 1914 second approximation for the circumference of an ellipse,
 \[
 C(a,b) \approx \pi(a+b)\left(1 + \frac{3h}{10 + \sqrt{4 - 3h}}\right), \qquad h = \left(\frac{a-b}{a+b}\right)^2 \in [0, 1],
 \]
-and resolve the structural mechanism by which a three-parameter radical ansatz matches four consecutive orders ($h^1$ through $h^4$) of the Ivory--Bessel hypergeometric series ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$. By expanding ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right) - 1$ into a canonical Stieltjes continued fraction (S-fraction), we prove that the third and fourth partial numerators are \emph{identically equal} ($a_3 = a_4 = \tfrac{3}{16}$). Closing the continued fraction at depth $3$ via a $1$-periodic quadratic fixed point $T(h) = 1 - \tfrac{3h/16}{T(h)}$ yields Ramanujan's formula directly and explains the exact cancellation of the $h^4$ defect.
+matches four consecutive orders ($h^1$ through $h^4$) of the Ivory--Bessel hypergeometric series ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$ using only three parameters. Reviewing this mechanism through the canonical Stieltjes continued fraction (S-fraction) of ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right) - 1$, we prove that its third and fourth partial numerators are \emph{identically equal} ($a_3 = a_4 = \tfrac{3}{16}$), so that a $1$-periodic quadratic tail closure $T(h) = 1 - \tfrac{3h/16}{T(h)}$ at depth $3$ reproduces Ramanujan's formula directly and cancels the $h^4$ defect automatically.
 
-Building on this structure, we isolate the exact inner-radical residual $\delta(h)$ inside $\sqrt{4 - 3h - \delta(h)}$ and prove that its normalized reciprocal admits the rational Taylor expansion
+Building systematically on this single-radical architecture, we isolate the \emph{full} exact inner-radical residual $\delta(h)$ inside $\sqrt{4 - 3h - \delta(h)}$ and prove that its normalized reciprocal admits the rational Taylor expansion
 \[
 Q(h) = \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 - \frac{1081}{108}\,h^4 + \mathcal{O}(h^5).
 \]
-From this expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $h^8$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II) and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.628\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls. Finally, we generalize the framework to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-8P} and \texttt{HR-3D-10P}), proving via Carlson's symmetric integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 16.8\text{ ppm}$} globally ($>630\times$ improvement) without fractional powers.
+From this reciprocal expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $h^8$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II), $25.49\text{ ppm}$ (Shankar $A_2$, 2026), and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.628\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls. Finally, we generalize the framework to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-8P} and \texttt{HR-3D-10P}), proving via Carlson's symmetric integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 16.8\text{ ppm}$} globally ($>630\times$ improvement) without fractional powers.
 \end{abstract}
 
 \textbf{Keywords:} Ellipse circumference, triaxial ellipsoid surface area, Ramanujan approximations, Stieltjes continued fractions, Pad\'e approximants, Gauss hypergeometric function, Carlson symmetric elliptic integrals.
@@ -146,11 +146,11 @@ Subsequent literature sought to improve upon Eq.~\eqref{eq:ram2} primarily via t
     \item \textbf{Continued-fraction tail closures and leading-order inner perturbations:} Recently, Uday Shankar (March 2026)~\cite{Shankar2026} independently applied Viscovatov's algorithm to obtain the Stieltjes continued fraction of Ivory's series (confirming $a_3 = a_4 = \tfrac{3}{16}$), introduced the leading-order inner-radical perturbation $A_1(h) = 1 + \tfrac{3h}{10+\sqrt{4-3h-\frac{9}{2048}h^4}}$ ($359.50\text{ ppm}$), and proposed a depth-$4$ empirical tail closure $A_2(h)$ ($25.49\text{ ppm}$).
 \end{enumerate}
 
-In this paper, we systematically advance the third, purely algebraic structural pathway: rather than stopping at the leading term $\tfrac{9}{2048}h^4$ or approximating the continued-fraction tail by a constant, we isolate the \emph{full} exact inner-radical defect $\delta(h)$ inside $1 + \tfrac{3h}{10 + \sqrt{4 - 3h - \delta(h)}}$ and expand its normalized reciprocal $Q(h) = 27h^4/\delta(h)$ analytically. Because $\delta(h)$ sits inside the outer radical denominator, any residual error in approximating $Q(h)$ is nonlinearly damped by a factor of roughly $540$--$576$ (nearly three orders of magnitude).
+In this paper, we turn the third pathway---modifying the radicand inside Ramanujan's single-square-root architecture---from a first-order perturbation into a systematic, exact analytical framework. Rather than stopping at the leading term $\tfrac{9}{2048}h^4$ or closing the continued-fraction tail empirically, we isolate the \emph{full} exact inner-radical defect $\delta(h)$ inside $1 + \tfrac{3h}{10 + \sqrt{4 - 3h - \delta(h)}}$, prove that its normalized reciprocal $Q(h) = 27h^4/\delta(h)$ admits a clean rational Taylor expansion, and couple Pad\'e singularity modeling with exact enforcement of the degenerate limit $F_{\text{exact}}(1) = \tfrac{4}{\pi}$. Because $\delta(h)$ sits inside the outer radical denominator, any residual error in approximating $Q(h)$ is nonlinearly damped by a factor of roughly $540$--$576$ (nearly three orders of magnitude).
 
 \section{Stieltjes Continued Fraction Periodicity of Ramanujan II}
 
-We first record the exact Stieltjes continued fraction structure underlying Ramanujan's second approximation (also derived independently via Viscovatov's algorithm in~\cite{Shankar2026}; see also~\cite{JacobsenWaadeland1985,LorentzenWaadeland1992}).
+To motivate the inner-radical architecture of Section~3, we first establish the exact Stieltjes continued fraction structure underlying Ramanujan's second approximation (also derived independently via Viscovatov's algorithm in~\cite{Shankar2026}; see also~\cite{JacobsenWaadeland1985,LorentzenWaadeland1992}).
 
 \begin{theorem}[Local Periodicity of the Ivory--Bessel Stieltjes Continued Fraction]\label{thm:cf_periodicity}
 Let $F_{\text{exact}}(h) = {}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$. Its reduced regular Stieltjes continued fraction (S-fraction) expansion around $h = 0$,
@@ -249,7 +249,7 @@ Finally, setting $h = 1$ in Eq.~\eqref{eq:delta_def} and substituting $F_{\text{
 
 \subsection{The Five 2D Hyper-Ramanujan (\texttt{HR}) Approximations}
 
-Theorem~\ref{thm:inner_reciprocal} immediately generates five closed-form approximations of the unified single-radical form
+Truncating $\delta(h)$ in Eq.~\eqref{eq:delta_series} at its leading term $\tfrac{9}{2048}h^4$ recovers Shankar's first-order perturbation $A_1(h)$~\cite{Shankar2026} ($359.50\text{ ppm}$). Passing instead to the normalized reciprocal $Q(h) = 27h^4/\delta(h)$ in Theorem~\ref{thm:inner_reciprocal} immediately generates five closed-form approximations of the unified single-radical form
 \begin{equation}\label{eq:hr_template}
 F_{\text{HR}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\,h^4}{Q_{\text{approx}}(h)}}},
 \end{equation}
@@ -408,6 +408,8 @@ Ayala-Raggi--Rend\'on-Mar\'in (\texttt{R2/2exp})~\cite{AyalaRaggi2025} & $h^4$ &
 \end{tabular}%
 }
 \end{table}
+
+As Table~\ref{tab:2d_pareto} demonstrates, Shankar's leading-order perturbation $A_1$ sits on the Pareto frontier as an inexpensive order-5 step between Ramanujan~II and \texttt{HR-7-Int} ($359.50\text{ ppm}$), whereas his empirical tail closure $A_2$ ($25.49\text{ ppm}$, Cost~$31.5$) is strictly dominated by \texttt{HR-6B} ($11.82\text{ ppm}$, Cost~$28.5$). Likewise, the transcendental exponential correction \texttt{R2/2exp} ($0.57\text{ ppm}$, Cost~$88.5$, $341\text{ MemBits}$) is strictly dominated across all three objectives by the purely algebraic \texttt{HR-6M} ($0.299\text{ ppm}$, Cost~$37.5$, $290\text{ MemBits}$). Overall, \texttt{HR-8P} achieves the highest composite efficiency index ($\text{Score} = 1.907$), improving upon Shankar~$A_2$ by more than $40\times$ globally and by four full decimal digits at $h = 0.1$.
 
 \begin{table}[H]
 \centering
