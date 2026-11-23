@@ -32,6 +32,11 @@ jobs:
       - name: Run Full Research Benchmark Pipeline (2D & 3D)
         run: python main.py
 
+      - name: Generate Publication-Quality Vector Figures (error_comparison_2d.pdf)
+        run: |
+          pip install matplotlib
+          python paper/generate_figures.py
+
       - name: Compile Academic LaTeX Paper (hyper_ramanujan_oertel_2026.pdf)
         run: |
           sudo apt-get update

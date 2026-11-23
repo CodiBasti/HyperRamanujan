@@ -84,7 +84,7 @@ Building systematically on this single-radical architecture, we isolate the \emp
 \[
 Q(h) = \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{413}{9}\,h^3 - \frac{1081}{108}\,h^4 + \mathcal{O}(h^5).
 \]
-From this reciprocal expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $h^8$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II), $25.49\text{ ppm}$ (Shankar $A_2$, 2026), and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.628\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls. Finally, we generalize the framework to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-8P} and \texttt{HR-3D-10P}), proving via Carlson's symmetric integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 16.8\text{ ppm}$} globally ($>630\times$ improvement) without fractional powers.
+From this reciprocal expansion we derive five novel single-radical Hyper-Ramanujan approximations (\texttt{HR-7-Int}, \texttt{HR-6B}, \texttt{HR-8B}, \texttt{HR-8P}, and \texttt{HR-6M}). In particular, the singular-pole Pad\'e radical \texttt{HR-8P} incorporates the rational pole factor $\left(1 - \tfrac{13}{14}h\right)$ to match the Taylor expansion through $h^8$, evaluate \emph{identically} to the exact degenerate limit $\tfrac{4}{\pi}$ at $h=1$, achieve full $16$-digit IEEE-754 \texttt{float64} precision for $h \le 0.1$, and reduce the global worst-case error across $h \in [0, 1]$ from $402.34\text{ ppm}$ (Ramanujan II), $25.49\text{ ppm}$ (Shankar $A_2$, 2026), and $13.74\text{ ppm}$ (Cantrell, 2004) to \textbf{$0.628\text{ ppm}$} (\texttt{HR-8P}) and \textbf{$0.299\text{ ppm}$} (\texttt{HR-6M}) using only a single square root and zero transcendental \texttt{exp}/\texttt{ln}/\texttt{pow} calls. Finally, we generalize the framework to the 3D surface area of a triaxial ellipsoid (\texttt{HR-3D-8P} and \texttt{HR-3D-10P}), proving via Carlson's symmetric integral $R_G(a^2b^2, a^2c^2, b^2c^2)$ that the entire 3D degenerate boundary reduces identically to $\tfrac{\pi}{2}C_{\text{2D}}(ab, ac)$, thereby reducing Knud Thomsen's 2004 power-mean error ($10\,608\text{ ppm}$) to \textbf{$< 25.2\text{ ppm}$} globally ($>420\times$ improvement) without fractional powers.
 \end{abstract}
 
 \textbf{Keywords:} Ellipse circumference, triaxial ellipsoid surface area, Ramanujan approximations, Stieltjes continued fractions, Pad\'e approximants, Gauss hypergeometric function, Carlson symmetric elliptic integrals.
@@ -376,7 +376,14 @@ S_{\text{HR-3D-10P}}(a,b,c) &= 4\pi\,M \left( T_{10}(H, J) + \frac{s^{11}}{9 - 8
 
 \section{Numerical Benchmarks and Pareto-Efficiency Analysis}
 
-Tables~\ref{tab:2d_pareto} and~\ref{tab:3d_bench} summarize the 50-digit precision benchmarks across 2D ellipses and 3D triaxial ellipsoids. In Table~\ref{tab:2d_pareto}, hardware operational cost ($\text{OpCost}$) weights additions/multiplications by $1.0$, divisions by $4.0$, square roots by $6.0$, transcendental \texttt{exp}/\texttt{ln} calls by $15.0$, and non-integer constant loads by $2.5$ (Cantrell's $h^{12}$ is evaluated via $4$ binary-squaring multiplications with zero \texttt{pow} calls). Constant memory footprint (\texttt{MemBits}) measures the exact Minimum Description Length in bits: $\lceil\log_2(|n|+1)\rceil+1$ bits per unique integer/rational component plus $64$ bits per precomputed \texttt{float64} constant. With $D(h) = -\log_{10}(\varepsilon_{\text{rel}}(h))$, the composite efficiency index is $\text{Score} = (0.4\,D_{0.1} + 0.3\,D_{h\le 0.5} + 0.3\,D_{[0,1]})/\sqrt{\text{OpCost}}$, alongside the weight-free strict Pareto frontier ($\checkmark$).
+Figure~\ref{fig:error_pareto} and Tables~\ref{tab:2d_pareto}--\ref{tab:3d_bench} summarize the 50-digit precision benchmarks across 2D ellipses and 3D triaxial ellipsoids. In Table~\ref{tab:2d_pareto}, hardware operational cost ($\text{OpCost}$) weights additions/multiplications by $1.0$, divisions by $4.0$, square roots by $6.0$, transcendental \texttt{exp}/\texttt{ln} calls by $15.0$, and non-integer constant loads by $2.5$ (Cantrell's $h^{12}$ is evaluated via $4$ binary-squaring multiplications with zero \texttt{pow} calls). Constant memory footprint (\texttt{MemBits}) measures the exact Minimum Description Length in bits: $\lceil\log_2(|n|+1)\rceil+1$ bits per unique integer/rational component plus $64$ bits per precomputed \texttt{float64} constant. With $D(h) = -\log_{10}(\varepsilon_{\text{rel}}(h))$, the composite efficiency index is $\text{Score} = (0.4\,D_{0.1} + 0.3\,D_{h\le 0.5} + 0.3\,D_{[0,1]})/\sqrt{\text{OpCost}}$, alongside the weight-free strict Pareto frontier ($\checkmark$).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/error_comparison_2d.pdf}
+\caption{2D ellipse circumference error and efficiency comparison (50-digit reference). (a) Relative error $\varepsilon_{\text{rel}}(h)$ across $h \in [0, 1]$ on a logarithmic scale: \texttt{HR-8P} reaches IEEE-754 \texttt{float64} precision for $h \le 0.1$ and stays $\le 0.628\text{ ppm}$ globally, while \texttt{HR-6M} equioscillates below $0.299\text{ ppm}$. (b) Global worst-case error (\texttt{ppm}) versus hardware operational cost ($\text{OpCost}$), illustrating the strict Pareto dominance of the \texttt{HR} family over both Shankar $A_2$ and transcendental \texttt{R2/2exp}.}
+\label{fig:error_pareto}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -413,7 +420,7 @@ As Table~\ref{tab:2d_pareto} demonstrates, Shankar's leading-order perturbation 
 
 \begin{table}[H]
 \centering
-\caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}). Across extreme high-aspect scalene ratios such as $(100, 5, 1)$, \texttt{HR-3D-10P} maintains a global worst-case error of $16.73\text{ ppm}$ vs.\ $10\,608\text{ ppm}$ for Thomsen ($p=1.6075$).}
+\caption{3D Triaxial Ellipsoid Surface Area Benchmark: Relative Error in Parts Per Million (\texttt{ppm}). Across the full 2D normalized shape space $(Y/X, Z/X) \in (0, 1]^2$, \texttt{HR-3D-10P} attains its global worst-case error of $25.14\text{ ppm}$ at $(51.3, 6.94, 1)$ vs.\ $10\,608\text{ ppm}$ for Thomsen ($p=1.6075$), and \texttt{HR-3D-8P} attains $56.67\text{ ppm}$ at $(33.3, 33.3, 1)$.}
 \label{tab:3d_bench}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
@@ -429,6 +436,7 @@ Prolate Spheroid $(10.0, 1.0, 1.0)$ & $8612.54\text{ ppm}$ & $7606.93\text{ ppm}
 Oblate Spheroid $(10.0, 10.0, 1.0)$ & $7538.71\text{ ppm}$ & $10112.18\text{ ppm}$ & \textbf{$24.58\text{ ppm}$} & \textbf{$1.47\text{ ppm}$} \\
 Extreme Prolate $(50.0, 1.0, 1.0)$ & $11385.12\text{ ppm}$ & $10235.32\text{ ppm}$ & \textbf{$0.42\text{ ppm}$} & \textbf{$0.01\text{ ppm}$} \\
 Extreme Oblate $(50.0, 50.0, 1.0)$ & $7085.10\text{ ppm}$ & $10236.04\text{ ppm}$ & \textbf{$54.66\text{ ppm}$} & \textbf{$9.59\text{ ppm}$} \\
+Global Worst-Case Scalene $(51.3, 6.94, 1.0)$ & $5521.32\text{ ppm}$ & $8191.29\text{ ppm}$ & \textbf{$39.67\text{ ppm}$} & \textbf{$25.14\text{ ppm}$} \\
 Flat Circular Disk $(100, 100, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
 Flat Elliptical Disk $(100, 20, 0)$ & $6535.77\text{ ppm}$ & $9765.45\text{ ppm}$ & \textbf{$0.00\text{ ppm}$} & \textbf{$0.00\text{ ppm}$} \\
 Extreme Triaxial Needle $(1000, 2.0, 1.0)$ & $6769.63\text{ ppm}$ & $5207.80\text{ ppm}$ & \textbf{$0.61\text{ ppm}$} & \textbf{$0.11\text{ ppm}$} \\

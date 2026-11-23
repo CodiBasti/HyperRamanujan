@@ -193,11 +193,12 @@ def verify_certificate_c_precision_bounds() -> Dict[str, Any]:
         assert max_err["HR-8P"] < 6.35e-7, f"HR-8P bound exceeded: {max_err['HR-8P']}"
         assert max_err["HR-6M"] < 3.00e-7, f"HR-6M bound exceeded: {max_err['HR-6M']}"
 
-        # 3D Triaxial Ellipsoid verification
+        # 3D Triaxial Ellipsoid verification (including global 2D parameter-space worst cases)
         shapes_3d = [
             (1.2, 1.1, 1.0), (2.0, 1.5, 1.0), (3.0, 2.0, 1.0), (5.0, 3.0, 1.0),
-            (10.0, 3.0, 1.0), (10.0, 1.0, 1.0), (10.0, 10.0, 1.0), (50.0, 1.0, 1.0),
-            (50.0, 50.0, 1.0), (100.0, 100.0, 0.0), (100.0, 20.0, 0.0), (1000.0, 2.0, 1.0)
+            (10.0, 3.0, 1.0), (10.0, 1.0, 1.0), (10.0, 10.0, 1.0), (33.3, 33.3, 1.0),
+            (50.0, 1.0, 1.0), (50.0, 50.0, 1.0), (51.3, 6.94, 1.0),
+            (100.0, 100.0, 0.0), (100.0, 20.0, 0.0), (1000.0, 2.0, 1.0)
         ]
         max_err_3d_8p = 0.0
         max_err_3d_10p = 0.0
@@ -208,7 +209,7 @@ def verify_certificate_c_precision_bounds() -> Dict[str, Any]:
             max_err_3d_8p = max(max_err_3d_8p, e8)
             max_err_3d_10p = max(max_err_3d_10p, e10)
 
-        assert max_err_3d_10p < 1.70e-5, f"HR-3D-10P bound exceeded: {max_err_3d_10p}"
+        assert max_err_3d_10p < 2.55e-5, f"HR-3D-10P bound exceeded: {max_err_3d_10p}"
 
         return {
             "status": "VERIFIED",
