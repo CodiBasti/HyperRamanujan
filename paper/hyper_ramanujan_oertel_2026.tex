@@ -105,7 +105,10 @@ F_{\text{exact}}(h) := \frac{C(a,b)}{\pi(a+b)} = {}_2F_1\!\left(-\frac{1}{2}, -\
 \end{equation}
 with the conventions $(-1)!! = 1$ and $(-3)!! = -1$. Expanding the initial terms explicitly yields:
 \begin{equation}\label{eq:ivory_terms}
-F_{\text{exact}}(h) = 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{256}h^3 + \frac{25}{16384}h^4 + \frac{49}{65536}h^5 + \frac{441}{1048576}h^6 + \frac{1089}{4194304}h^7 + \frac{184041}{1073741824}h^8 + \mathcal{O}(h^9).
+\begin{aligned}
+F_{\text{exact}}(h) &= 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{256}h^3 + \frac{25}{16384}h^4 + \frac{49}{65536}h^5 \\
+&\quad + \frac{441}{1048576}h^6 + \frac{1089}{4194304}h^7 + \frac{184041}{1073741824}h^8 + \mathcal{O}(h^9).
+\end{aligned}
 \end{equation}
 
 \begin{proposition}[Exact Degenerate Limit at $h=1$]\label{prop:h1_limit}
@@ -124,7 +127,8 @@ Geometrically, for $b = 0$ the ellipse collapses into a double line segment conn
 In Section 16 of his landmark 1914 paper \emph{``Modular Equations and Approximations to $\pi$''}~\cite{Ramanujan1914}, Srinivasa Ramanujan presented two closed-form algebraic approximations without derivation:
 \begin{align}
 F_{\text{Ram-I}}(h) &= 3 - 2\sqrt{1 - \frac{1}{4}h} = 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{512}h^3 + \mathcal{O}(h^4), \label{eq:ram1}\\
-F_{\text{Ram-II}}(h) &= 1 + \frac{3h}{10 + \sqrt{4 - 3h}} = 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{256}h^3 + \frac{25}{16384}h^4 + \frac{95}{131072}h^5 + \mathcal{O}(h^6). \label{eq:ram2}
+F_{\text{Ram-II}}(h) &= 1 + \frac{3h}{10 + \sqrt{4 - 3h}} \nonumber\\
+&= 1 + \frac{1}{4}h + \frac{1}{64}h^2 + \frac{1}{256}h^3 + \frac{25}{16384}h^4 + \frac{95}{131072}h^5 + \mathcal{O}(h^6). \label{eq:ram2}
 \end{align}
 As observed by Almkvist and Berndt~\cite{AlmkvistBerndt1988}, Lorentzen (Jacobsen) and Waadeland~\cite{JacobsenWaadeland1985,LorentzenWaadeland1992}, and Villarino~\cite{Villarino2005}, Eq.~\eqref{eq:ram2} exhibits a remarkable order elevation: although the three constants $(3, 10, 3)$ in the ansatz $1 + \tfrac{p h}{q + \sqrt{4 - r h}}$ provide only three algebraic degrees of freedom (naturally matching $h^1, h^2, h^3$), the fourth-order coefficient $c_4 = \tfrac{25}{16384}$ is matched \emph{identically}, leaving a fifth-order leading defect of only
 \[
@@ -152,19 +156,19 @@ F_{\text{exact}}(h) - 1 = \cfrac{a_1\,h}{1 - \cfrac{a_2\,h}{1 - \cfrac{a_3\,h}{1
 \end{equation}
 has the exact partial numerator coefficients
 \begin{equation}\label{eq:cf_coeffs}
-a_1 = \frac{1}{4}, \quad a_2 = \frac{1}{16}, \quad \mathbf{a_3 = \frac{3}{16}}, \quad \mathbf{a_4 = \frac{3}{16}}, \quad a_5 = \frac{11}{48}, \quad a_6 = \frac{115}{528}, \quad a_7 = \frac{14627}{60720}.
+a_1 = \frac{1}{4},\;\; a_2 = \frac{1}{16},\;\; \mathbf{a_3 = \frac{3}{16}},\;\; \mathbf{a_4 = \frac{3}{16}},\;\; a_5 = \frac{11}{48},\;\; a_6 = \frac{115}{528},\;\; a_7 = \frac{14627}{60720}.
 \end{equation}
 In particular, $a_3 = a_4 = \frac{3}{16}$ are identically equal. Approximating the continued fraction tail from depth $3$ onwards by a $1$-periodic continued fraction with constant rate $\alpha = a_3 = \frac{3}{16}$ yields Ramanujan's second approximation Eq.~\eqref{eq:ram2} and automatically matches $F_{\text{exact}}(h)$ through $h^4$.
 \end{theorem}
 
 \begin{proof}
 Let $R_1(h) = F_{\text{exact}}(h) - 1 = \tfrac{1}{4}h + \tfrac{1}{64}h^2 + \tfrac{1}{256}h^3 + \tfrac{25}{16384}h^4 + \tfrac{49}{65536}h^5 + \mathcal{O}(h^6)$. Then $a_1 = \lim_{h\to 0} R_1(h)/h = \tfrac{1}{4}$. Defining the depth-$k$ remainder recursively via $R_{k+1}(h) = 1 - \tfrac{a_k h}{R_k(h)}$, direct rational series division yields:
-\begin{align*}
-R_2(h) &= 1 - \frac{h/4}{R_1(h)} = \frac{1}{16}h + \frac{3}{256}h^2 + \frac{9}{2048}h^3 + \frac{141}{65536}h^4 + \mathcal{O}(h^5) &&\implies a_2 = \frac{1}{16},\\
-R_3(h) &= 1 - \frac{h/16}{R_2(h)} = \frac{3}{16}h + \frac{9}{256}h^2 + \frac{15}{1024}h^3 + \mathcal{O}(h^4) &&\implies a_3 = \frac{3}{16},\\
-R_4(h) &= 1 - \frac{3h/16}{R_3(h)} = \frac{3}{16}h + \frac{11}{256}h^2 + \mathcal{O}(h^3) &&\implies a_4 = \frac{3}{16},\\
-R_5(h) &= 1 - \frac{3h/16}{R_4(h)} = \frac{11}{48}h + \mathcal{O}(h^2) &&\implies a_5 = \frac{11}{48}.
-\end{align*}
+\begin{alignat*}{2}
+R_2(h) &= 1 - \frac{h/4}{R_1(h)} = \frac{1}{16}h + \frac{3}{256}h^2 + \frac{9}{2048}h^3 + \frac{141}{65536}h^4 + \mathcal{O}(h^5) &&\;\implies\; a_2 = \frac{1}{16},\\
+R_3(h) &= 1 - \frac{h/16}{R_2(h)} = \frac{3}{16}h + \frac{9}{256}h^2 + \frac{15}{1024}h^3 + \mathcal{O}(h^4) &&\;\implies\; a_3 = \frac{3}{16},\\
+R_4(h) &= 1 - \frac{3h/16}{R_3(h)} = \frac{3}{16}h + \frac{11}{256}h^2 + \mathcal{O}(h^3) &&\;\implies\; a_4 = \frac{3}{16},\\
+R_5(h) &= 1 - \frac{3h/16}{R_4(h)} = \frac{11}{48}h + \mathcal{O}(h^2) &&\;\implies\; a_5 = \frac{11}{48}.
+\end{alignat*}
 Because $a_3 = a_4 = \tfrac{3}{16}$, replacing the denominator $1 - R_3(h)$ at depth $2$ by the $1$-periodic fixed point $T(h)$ satisfying
 \[
 T(h) = 1 - \frac{\frac{3}{16}h}{T(h)} \iff T(h)^2 - T(h) + \frac{3}{16}h = 0,
@@ -192,11 +196,17 @@ canceling the common factor $(8 + 4\sqrt{4 - 3h} - h)$ immediately yields
 \begin{theorem}[Exact Inner-Radical Reciprocal Expansion]\label{thm:inner_reciprocal}
 Define the exact inner-radical defect function $\delta(h)$ on $h \in (0, 1]$ by
 \begin{equation}\label{eq:delta_def}
-F_{\text{exact}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \delta(h)}} \iff \delta(h) = 4 - 3h - \left(\frac{3h}{F_{\text{exact}}(h) - 1} - 10\right)^{\!2}.
+\begin{aligned}
+F_{\text{exact}}(h) &= 1 + \frac{3h}{10 + \sqrt{4 - 3h - \delta(h)}} \\
+\iff \delta(h) &= 4 - 3h - \left(\frac{3h}{F_{\text{exact}}(h) - 1} - 10\right)^{\!2}.
+\end{aligned}
 \end{equation}
 Then $\delta(h)$ is analytic on $|h| < 1$ with leading order $\mathcal{O}(h^4)$:
 \begin{equation}\label{eq:delta_series}
-\delta(h) = \frac{9}{2048}h^4 + \frac{165}{32768}h^5 + \frac{1191}{262144}h^6 + \frac{32157}{8388608}h^7 + \frac{425373}{134217728}h^8 + \mathcal{O}(h^9),
+\begin{aligned}
+\delta(h) &= \frac{9}{2048}h^4 + \frac{165}{32768}h^5 + \frac{1191}{262144}h^6 \\
+&\quad + \frac{32157}{8388608}h^7 + \frac{425373}{134217728}h^8 + \mathcal{O}(h^9),
+\end{aligned}
 \end{equation}
 and the normalized reciprocal $Q(h) := \frac{27\,h^4}{\delta(h)} = \sum_{k=0}^{\infty} d_k\,h^k$ has the Taylor expansion
 \begin{equation}\label{eq:Q_series}
@@ -204,14 +214,20 @@ Q(h) = \frac{27\,h^4}{\delta(h)} = 6144 - 7040\,h + \frac{5144}{3}\,h^2 - \frac{
 \end{equation}
 Moreover, at the degenerate endpoint $h = 1$, $F_{\text{exact}}(1) = \frac{4}{\pi}$ implies the exact boundary values
 \begin{equation}\label{eq:delta1_Q1}
-\delta_1 := \delta(1) = 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^{\!2} \approx 0.04082049800044723, \qquad Q(1) = \frac{27}{\delta_1} \approx 661.4324009399441.
+\begin{aligned}
+\delta_1 := \delta(1) &= 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^{\!2} \approx 0.04082049800044723, \\
+Q(1) &= \frac{27}{\delta_1} \approx 661.4324009399441.
+\end{aligned}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
 Let $g(h) = (F_{\text{exact}}(h) - 1)/h = \sum_{n=1}^{\infty} c_n h^{n-1} = \tfrac{1}{4} + \tfrac{1}{64}h + \tfrac{1}{256}h^2 + \tfrac{25}{16384}h^3 + \dots$. Inverting $g(h)$ as a formal power series in $\mathbb{Q}[[h]]$ gives
 \[
-s(h) := \frac{3}{g(h)} - 10 = 2 - \frac{3}{4}h - \frac{9}{64}h^2 - \frac{27}{512}h^3 - \frac{423}{16384}h^4 - \frac{15}{1024}h^5 - \frac{19167}{2097152}h^6 - \frac{204561}{33554432}h^7 - \frac{4589139}{1073741824}h^8 + \mathcal{O}(h^9).
+\begin{aligned}
+s(h) := \frac{3}{g(h)} - 10 &= 2 - \frac{3}{4}h - \frac{9}{64}h^2 - \frac{27}{512}h^3 - \frac{423}{16384}h^4 - \frac{15}{1024}h^5 \\
+&\quad - \frac{19167}{2097152}h^6 - \frac{204561}{33554432}h^7 - \frac{4589139}{1073741824}h^8 + \mathcal{O}(h^9).
+\end{aligned}
 \]
 Squaring $s(h)$ yields $s(h)^2 = 4 - 3h - \tfrac{9}{2048}h^4 - \tfrac{165}{32768}h^5 - \tfrac{1191}{262144}h^6 - \tfrac{32157}{8388608}h^7 - \tfrac{425373}{134217728}h^8 + \mathcal{O}(h^9)$, establishing Eq.~\eqref{eq:delta_series}. Factoring out $\tfrac{9}{2048}h^4$ and scaling by $27$ (the least common multiple of the leading reciprocal denominators $9$ and $27$) gives:
 \[
@@ -246,8 +262,9 @@ classified systematically by their matched Taylor order at $h \to 0$ and boundar
     \item \textbf{\texttt{HR-6B} (Order-6 + Exact $h=1$ Boundary):}
     Retaining $d_0 = 6144$ and $d_1 = -7040$ (matching through $h^6$) and fixing the quadratic coefficient $B_{\text{exact}}$ so that $Q_{\text{6B}}(1) = \tfrac{27}{\delta_1}$ yields:
     \begin{equation}\label{eq:hr6b}
-    F_{\text{HR-6B}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\,h^4}{6144 - 7040\,h + B_{\text{exact}}\,h^2}}}, \qquad B_{\text{exact}} = \frac{27}{\delta_1} + 896 \approx 1557.432400939944.
+    F_{\text{HR-6B}}(h) = 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27\,h^4}{6144 - 7040\,h + B_{\text{exact}}\,h^2}}},
     \end{equation}
+    where $B_{\text{exact}} = \frac{27}{\delta_1} + 896 \approx 1557.432400939944$.
 
     \item \textbf{\texttt{HR-8B} (Order-8 + Exact $h=1$ Boundary):}
     Retaining $d_0, d_1, d_2, d_3$ from Eq.~\eqref{eq:Q_series} (whose exact sum is $6144 - 7040 + \tfrac{5144}{3} - \tfrac{413}{9} = \tfrac{6955}{9}$, matching through $h^8$) and fixing the quartic coefficient $C_{\text{exact}}$ to satisfy $Q_{\text{8B}}(1) = \tfrac{27}{\delta_1}$ gives:
@@ -259,7 +276,10 @@ classified systematically by their matched Taylor order at $h \to 0$ and boundar
     \item \textbf{\texttt{HR-8P} $\star$ (Order-8 Singular-Pole Pad\'e $-\tfrac{13}{14}$ + Exact $h=1$ --- Pareto Champion):}
     To capture the steepening of $Q(h)$ near $h \to 1^-$ caused by the logarithmic branch point of ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; h\right)$, we represent $Q(h)$ as a $[4/1]$ Pad\'e rational function $Q_{\text{8P}}(h) = \frac{p_0 + p_1 h + p_2 h^2 + p_3 h^3 + p_4 h^4}{1 + q_1 h}$ with rational pole parameter $q_1 = -\frac{13}{14}$. Matching Eq.~\eqref{eq:Q_series} through $h^3$ fixes:
     \begin{equation}\label{eq:hr8p_coeffs}
-    p_0 = 6144, \quad p_1 = d_1 + d_0 q_1 = -\frac{89216}{7}, \quad p_2 = d_2 + d_1 q_1 = \frac{173288}{21}, \quad p_3 = d_3 + d_2 q_1 = -\frac{103199}{63},
+    \begin{aligned}
+    p_0 &= 6144, &\qquad p_1 &= d_1 + d_0 q_1 = -\frac{89216}{7}, \\
+    p_2 &= d_2 + d_1 q_1 = \frac{173288}{21}, &\qquad p_3 &= d_3 + d_2 q_1 = -\frac{103199}{63},
+    \end{aligned}
     \end{equation}
     whose exact rational sum is $p_0 + p_1 + p_2 + p_3 = \frac{793}{63}$. Enforcing $Q_{\text{8P}}(1) = \frac{27}{\delta_1}$ uniquely determines $p_4 = \frac{27}{14\,\delta_1} - \frac{793}{63} \approx 34.657869908409$, yielding:
     \begin{equation}\label{eq:hr8p}
@@ -283,11 +303,18 @@ For all $h \in [0, 1]$, the inner denominators of \texttt{HR-7-Int}, \texttt{HR-
 \begin{proof}
 By Abramowitz and Stegun~\cite[(15.3.12)]{AbramowitzStegun1964}, since $\gamma - \alpha - \beta = 1 - (-1/2) - (-1/2) = 2 \in \mathbb{Z}^+$, the hypergeometric function ${}_2F_1\!\left(-\tfrac{1}{2}, -\tfrac{1}{2}; 1; 1 - \epsilon\right)$ admits the asymptotic expansion around $\epsilon = 1 - h \to 0^+$:
 \begin{equation}\label{eq:as_15_3_12}
-F_{\text{exact}}(1 - \epsilon) = \frac{4}{\pi}\left[1 - \frac{1}{4}\epsilon + \frac{\epsilon^2}{32}\left(\ln\frac{16}{\epsilon} - \frac{5}{2}\right) + \frac{3\epsilon^3}{128}\left(\ln\frac{16}{\epsilon} - \frac{5}{2}\right) + \mathcal{O}(\epsilon^4\ln\epsilon)\right].
+\begin{aligned}
+F_{\text{exact}}(1 - \epsilon) = \frac{4}{\pi}\Biggl[1 - \frac{1}{4}\epsilon &+ \frac{\epsilon^2}{32}\left(\ln\frac{16}{\epsilon} - \frac{5}{2}\right) \\
+&+ \frac{3\epsilon^3}{128}\left(\ln\frac{16}{\epsilon} - \frac{5}{2}\right) + \mathcal{O}(\epsilon^4\ln\epsilon)\Biggr].
+\end{aligned}
 \end{equation}
 Because the logarithmic singularity enters at \emph{second} order $\mathcal{O}(\epsilon^2 \ln\epsilon)$ (a consequence of the quadratic relation $1 - e^2 \approx \tfrac{1}{16}(1-h)^2$), the first derivative at $h = 1$ is finite: $F'_{\text{exact}}(1) = \tfrac{1}{\pi} \approx 0.3183098862$, corresponding to the exact boundary derivative $Q'_{\text{exact}}(1) \approx -6223.3408$. Since $Q_{\text{approx}}(1) = Q_{\text{exact}}(1) = \tfrac{27}{\delta_1}$ and $Q'_{\text{approx}}(1)$ is finite (specifically, $Q'_{\text{8P}}(1) = -5641.20$ and $Q'_{\text{6M}}(1) = -5812.20$), Taylor expansion around $h = 1$ yields
 \[
-\frac{|F_{\text{approx}}(1-\epsilon) - F_{\text{exact}}(1-\epsilon)|}{F_{\text{exact}}(1-\epsilon)} = \frac{\delta_1^2}{18\,(4/\pi)\,(10+\sqrt{1-\delta_1})^2\sqrt{1-\delta_1}}\,|Q'_{\text{approx}}(1) - Q'_{\text{exact}}(1)|\,\epsilon + \mathcal{O}(\epsilon^2\ln\epsilon) \approx 6.158 \times 10^{-7}\,|\Delta Q'(1)|\,\epsilon,
+\begin{aligned}
+\frac{|F_{\text{approx}}(1-\epsilon) - F_{\text{exact}}(1-\epsilon)|}{F_{\text{exact}}(1-\epsilon)}
+&= \frac{\delta_1^2}{18\,(4/\pi)\,(10+\sqrt{1-\delta_1})^2\sqrt{1-\delta_1}}\,|Q'_{\text{approx}}(1) - Q'_{\text{exact}}(1)|\,\epsilon \\
+&\quad + \mathcal{O}(\epsilon^2\ln\epsilon) \approx 6.158 \times 10^{-7}\,|\Delta Q'(1)|\,\epsilon,
+\end{aligned}
 \]
 which decays linearly to $0$ as $\epsilon \to 0^+$. Finally, for \texttt{HR-8P}, the quartic denominator $P_4(h) = \sum_{k=0}^4 p_k h^k$ decreases monotonically on $[0, 1]$ from $P_4(0) = 6144$ to $P_4(1) = \tfrac{27}{14\delta_1} \approx 47.24517 > 0$ (its smallest positive real root lies at $h \approx 1.05782 > 1$, and all roots of $P_4'(h)$ exceed $1.159$), guaranteeing strict positivity and numerical stability across $[0, 1]$.
 \end{proof}
@@ -303,21 +330,28 @@ where $X = ab \ge Y = ac \ge Z = bc \ge 0$ are the principal cross-sectional sem
 \begin{theorem}[3D Ivory--Bessel--Carlson Spherical Series and Exact 3D-to-2D Boundary Reduction]\label{thm:3d_ellipsoid}
 Define the trace-free normalized deviations $x = \tfrac{X}{M}-1$, $y = \tfrac{Y}{M}-1$, $z = \tfrac{Z}{M}-1$ (satisfying $x+y+z=0$) and the two elementary symmetric shape invariants
 \begin{equation}\label{eq:HJ_def}
-H = \frac{x^2 + y^2 + z^2}{6} = \frac{(X-Y)^2 + (X-Z)^2 + (Y-Z)^2}{2\,(X+Y+Z)^2} \in [0, 1], \qquad J = x\,y\,z \in \left[-\frac{1}{4}, 2\right].
+\begin{aligned}
+H &= \frac{x^2 + y^2 + z^2}{6} = \frac{(X-Y)^2 + (X-Z)^2 + (Y-Z)^2}{2\,(X+Y+Z)^2} \in [0, 1], \\
+J &= x\,y\,z \in \left[-\frac{1}{4}, 2\right].
+\end{aligned}
 \end{equation}
 Then:
 \begin{enumerate}
-    \item The normalized surface area $F_{\text{3D}}(H, J) := \frac{S(a,b,c)}{4\pi\,M} = \frac{R_G(X^2, Y^2, Z^2)}{M}$ admits the exact 10th-order spherical expansion around $(H, J) = (0, 0)$:
+    \item The normalized surface area $F_{\text{3D}}(H, J) := \frac{S(a,b,c)}{4\pi\,M} = \frac{R_G(X^2, Y^2, Z^2)}{M}$ admits the exact 8th- and 10th-order spherical expansions $T_8(H, J)$ and $T_{10}(H, J)$ around $(H, J) = (0, 0)$:
     \begin{equation}\label{eq:T10_3d}
     \begin{aligned}
-    T_{10}(H, J) &= \underbrace{1 + \frac{3}{5}H - \frac{3}{35}J + \frac{3}{35}H^2 - \frac{6}{385}HJ + \frac{171}{5005}H^3 - \frac{3}{715}J^2 - \frac{3}{1001}H^2 J - \frac{57}{17017}H J^2 + \frac{27}{1547}H^4}_{T_8(H, J)}\\
-    &\quad - \frac{15}{46189}J^3 + \frac{36}{46189}H^3 J - \frac{6}{2717}H^2 J^2 + \frac{27}{2717}H^5.
+    T_{8}(H, J) &= 1 + \frac{3}{5}H - \frac{3}{35}J + \frac{3}{35}H^2 - \frac{6}{385}HJ + \frac{171}{5005}H^3 - \frac{3}{715}J^2 \\
+    &\quad - \frac{3}{1001}H^2 J - \frac{57}{17017}H J^2 + \frac{27}{1547}H^4, \\
+    T_{10}(H, J) &= T_{8}(H, J) - \frac{15}{46189}J^3 + \frac{36}{46189}H^3 J - \frac{6}{2717}H^2 J^2 + \frac{27}{2717}H^5.
     \end{aligned}
     \end{equation}
     \item The dimensionless volume invariant satisfies $\frac{(abc)^2}{M^3} = \frac{XYZ}{M^3} = (1+x)(1+y)(1+z) = 1 - 3H + J$. Consequently, the entire degenerate 3D boundary $Z = bc \to 0$ (comprising all flat elliptical disks $c = 0$ as well as all infinitely elongated triaxial needles $a \to \infty$) corresponds to the line $1 - 3H + J = 0$.
     \item On the entire degenerate boundary $Z = 0$ ($1 - 3H + J = 0$), the 3D ellipsoid surface area reduces \emph{identically} to the 2D ellipse circumference of semi-axes $(X, Y) = (ab, ac)$:
     \begin{equation}\label{eq:3d_to_2d_boundary}
-    S(a,b,c)\Big|_{Z=0} = 4\pi\,R_G(X^2, Y^2, 0) = \frac{\pi}{2}\,C_{\text{2D}}(X, Y) = \frac{\pi^2}{2}(X+Y)\,{}_2F_1\!\left(-\frac{1}{2}, -\frac{1}{2}; 1; h_{XY}\right),
+    \begin{aligned}
+    S(a,b,c)\Big|_{Z=0} &= 4\pi\,R_G(X^2, Y^2, 0) = \frac{\pi}{2}\,C_{\text{2D}}(X, Y) \\
+    &= \frac{\pi^2}{2}(X+Y)\,{}_2F_1\!\left(-\frac{1}{2}, -\frac{1}{2}; 1; h_{XY}\right),
+    \end{aligned}
     \end{equation}
     where $h_{XY} = \left(\frac{X-Y}{X+Y}\right)^2 = \frac{4H - 1}{3} \in [0, 1]$ for $H \in [\tfrac{1}{4}, 1]$.
 \end{enumerate}
