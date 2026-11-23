@@ -4,7 +4,7 @@
   "orcid": "https://orcid.org/0009-0000-7427-2058",
   "doi": "https://doi.org/10.5281/zenodo.24441829",
   "repository": "https://github.com/CodiBasti/HyperRamanujan",
-  "verified_at_utc": "2026-11-23T10:16:44.881908+00:00",
+  "verified_at_utc": "2026-11-23T11:33:05.045743+00:00",
   "certificate_A_symbolic_Q": {
     "status": "VERIFIED",
     "continued_fraction_a1_to_a5": [
@@ -49,5 +49,5 @@
       "HR-3D-10P": 9.5851
     }
   },
-  "certificate_sha256": "180316990bddab33bb2d38d493115b2688ed81ba77202acf7e598916caf5de28"
+  "certificate_sha256": "16ba7e924f091f5287880eaa50d48dead9f08c0873dea5388911e0e71c38f3bb"
 }

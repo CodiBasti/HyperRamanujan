@@ -1,7 +1,7 @@
 # Closed-Form Radical Approximations for the Ellipse Circumference and Triaxial Ellipsoid Surface Area: Continued Fraction Periodicity of Ramanujan II and Singular-Pole Hyper-Ramanujan (`HR`) Extensions
 
 **Author:** Sebastian Oertel ([@CodiBasti](https://github.com/CodiBasti) • [ORCID: 0009-0000-7427-2058](https://orcid.org/0009-0000-7427-2058))  
-**Permanent DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
+**Preprint DOI:** [`10.5281/zenodo.24462362`](https://doi.org/10.5281/zenodo.24462362) • **Code DOI:** [`10.5281/zenodo.24441829`](https://doi.org/10.5281/zenodo.24441829)  
 **Repository:** `https://github.com/CodiBasti/HyperRamanujan`  
 **Date:** November 2026  
 
@@ -15,7 +15,7 @@ $$
 C(a,b) \approx \pi(a+b)\left(1 + \frac{3h}{10 + \sqrt{4 - 3h}}\right), \qquad h = \left(\frac{a-b}{a+b}\right)^2
 $$
 
-and resolve the long-standing question of why a three-parameter radical ansatz matches four consecutive orders ($h^1$ through $h^4$) of the Ivory–Bessel hypergeometric expansion ${}_2F_1(-1/2, -1/2; 1; h)$. By expanding ${}_2F_1(-1/2, -1/2; 1; h) - 1$ into a regular Stieltjes continued fraction, we prove that the third and fourth partial denominators are **identically equal** ($a_3 = a_4 = 3/16$). Closing the continued fraction tail at level 3 with a 1-periodic quadratic fixed point $T(h) = 1 - \frac{3h/16}{T(h)}$ yields Ramanujan's formula directly and explains the automatic cancellation of the $h^4$ error defect.
+and resolve the long-standing question of why a three-parameter radical ansatz matches four consecutive orders ($h^1$ through $h^4$) of the Ivory–Bessel hypergeometric expansion ${}_2F_1(-1/2, -1/2; 1; h)$. By expanding ${}_2F_1(-1/2, -1/2; 1; h) - 1$ into a regular Stieltjes continued fraction, we prove that the third and fourth partial numerators are **identically equal** ($a_3 = a_4 = 3/16$). Closing the continued fraction tail at level 3 with a 1-periodic quadratic fixed point $T(h) = 1 - \frac{3h/16}{T(h)}$ yields Ramanujan's formula directly and explains the automatic cancellation of the $h^4$ error defect.
 
 Building on this structure, we analyze the exact residual $\delta(h)$ **inside the square root** $\sqrt{4 - 3h - \delta(h)}$ and show that its reciprocal possesses the remarkably clean rational expansion
 
@@ -60,7 +60,7 @@ $$
 Symbolic computation yields the exact rational sequence of partial coefficients:
 
 $$
-a_1 = \frac{1}{4}, \quad a_2 = \frac{1}{16}, \quad \mathbf{a_3 = \frac{3}{16}}, \quad \mathbf{a_4 = \frac{3}{16}}, \quad a_5 = \frac{11}{48}, \quad a_6 = \frac{29}{176}
+a_1 = \frac{1}{4}, \quad a_2 = \frac{1}{16}, \quad \mathbf{a_3 = \frac{3}{16}}, \quad \mathbf{a_4 = \frac{3}{16}}, \quad a_5 = \frac{11}{48}, \quad a_6 = \frac{115}{528}
 $$
 
 Because $a_3 = a_4 = 3/16$, replacing the continued fraction tail from depth 3 onwards by a constant 1-periodic continued fraction $T(h) = 1 - \frac{3h/16}{T(h)} = \frac{2 + \sqrt{4 - 3h}}{4}$ matches **both** depth 3 ($h^3$) and depth 4 ($h^4$) simultaneously and collapses into $1 + \frac{3h}{10 + \sqrt{4 - 3h}}$.
@@ -84,7 +84,7 @@ $$
 For the formula to be **100% exact at the degenerate boundary $h = 1$** ($F(1) = 4/\pi$), the inner correction $\delta(1) = \delta_1$ must satisfy:
 
 $$
-\delta_1 = 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^2 \approx 0.04082049844879468, \qquad Q(1) = \frac{27}{\delta_1} \approx 661.4324009399441
+\delta_1 = 1 - \left(\frac{3\pi}{4 - \pi} - 10\right)^2 \approx 0.04082049800044723, \qquad Q(1) = \frac{27}{\delta_1} \approx 661.4324009399441
 $$
 
 ### Taxonomy of Discovered Hyper-Ramanujan (`HR`) Formulas
@@ -123,7 +123,7 @@ $$
 \frac{C}{\pi(a+b)} \approx 1 + \frac{3h}{10 + \sqrt{4 - 3h - \dfrac{27(1 + q_1 h)h^4}{6144 + p_1 h + p_2 h^2 + p_3 h^3}}}
 $$
 
-> With $q_1 = -0.94542891$, $p_1 = -12848.71522304$, $p_2 = 8316.2309304$, and $p_3 = -1575.42097149$. Exact up to $\mathcal{O}(h^7)$ at $h \to 0$, exact at $h=1$, and global maximum error of **0.30 ppm** across $h \in [0, 1]$.
+> With $q_1 = -0.94542891$, $p_1 = -12848.71522304$, $p_2 = 8316.23093040$, and $p_3 = -1575.42062028$. Exact up to $\mathcal{O}(h^7)$ at $h \to 0$, exact at $h=1$, and global maximum error of **0.30 ppm** across $h \in [0, 1]$.
 
 ---
 
@@ -131,10 +131,10 @@ $$
 
 | Approximation Formula | Taylor Order | `sqrt` / `pow` | Op Cost | Digits (`h=0.1`) | Min Digits (`h <= 0.5`) | Min Digits (`h in [0,1]`) | Max Global Error (`ppm`) | **Pareto Efficiency Score** |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Kepler (1609)** | `O(h¹)` | `1` / `0` | `13.0` | 1.30 | 0.61 | 0.22 | `607300.92` | `0.214` |
-| **Peano/Sipos (1792)** | `O(h¹)` | `1` / `0` | `13.0` | 3.31 | 1.82 | 0.75 | `178097.25` | `0.582` |
-| **Ramanujan I (1914)** | `O(h²)` | `1` / `0` | `10.0` | 5.69 | 3.51 | 2.38 | `4155.03` | `1.279` |
-| **Hudson [1/1] (1917)** | `O(h³)` | `0` / `0` | `9.0` | 7.23 | 4.28 | 2.72 | `1889.83` | `1.665` |
+| **Kepler (1609)** | `h⁰` | `1` / `0` | `13.0` | 1.30 | 0.61 | 0.22 | `607300.92` | `0.214` |
+| **Peano/Sipos (1792)** | `h¹` | `1` / `0` | `13.0` | 3.31 | 1.82 | 0.75 | `178097.25` | `0.582` |
+| **Ramanujan I (1914)** | `h²` | `1` / `0` | `10.0` | 5.69 | 3.51 | 2.38 | `4155.03` | `1.279` |
+| **Hudson [2/1] (1917)** | `h³` | `0` / `0` | `9.0` | 7.23 | 4.28 | 2.72 | `1889.83` | `1.665` |
 | **Jacobsen-Waadeland [2/2] (1985)** | `O(h⁴)` | `0` / `0` | `13.0` | 8.85 | 5.12 | 3.05 | `888.05` | `1.662` |
 | **Cantrell (2004, `+c·h¹²`)** | `O(h⁴)` | `1` / `0` | `23.5` | 9.58 | 5.79 | 4.86 | `13.74` | `1.449` |
 | **Ramanujan II (1914)** | `O(h⁴)` | `1` / `0` | `15.0` | 9.58 | 5.76 | 3.40 | `402.34` | `1.698` |

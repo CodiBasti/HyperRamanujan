@@ -71,11 +71,10 @@ def approx_matt_parker(h: mp.mpf) -> mp.mpf:
 
 def approx_hudson_pade(h: mp.mpf) -> mp.mpf:
     """
-    Roger W. Hudson (1917) / Padé [1/1] approximation:
-    C / (pi*(a+b)) ≈ (64 - 3*h^2) / (64 - 16*h) = 1 + (3*h)/(16 - 4*h)...
-    Wait: Padé [1/1] of 1 + h/4 + h^2/64 is 1 + h / (4 - h/4) = (64 + 12*h) / (64 - 4*h).
+    Ralph G. Hudson (1917) / Padé [2/1] approximation:
+    C / (pi*(a+b)) ≈ (64 - 3*h^2) / (64 - 16*h).
     Hudson's famous formula is 0.25 * pi * (a+b) * (3*(1 + h/4) + 1/(1 - h/4)) = (64 - 3*h^2)/(64 - 16*h).
-    Matches h^0, h^1, h^2, and gives c_3 = 1/256 (exact!).
+    Matches h^0, h^1, h^2, and h^3 (c_3 = 1/256 exact!).
     """
     h_mp = mp.mpf(h)
     return (64 - 3 * (h_mp**2)) / (64 - 16 * h_mp)
