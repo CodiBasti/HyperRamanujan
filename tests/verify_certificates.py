@@ -18,7 +18,7 @@ Generates three deterministic mathematical certificates:
   monotonicity (1 - h in [10^-12, 10^-2]), and global supremum relative error bounds:
   - HR-8P   : sup_{h in [0, 1]} |err_rel(h)| <= 6.35e-7 (0.635 ppm)
   - HR-6M   : sup_{h in [0, 1]} |err_rel(h)| <= 3.00e-7 (0.300 ppm)
-  - HR-3D-10P: exact 3D-to-2D boundary reduction Z -> 0 and < 17.0 ppm across benchmark suite.
+  - HR-3D-10P: exact 3D-to-2D boundary reduction Z -> 0 and < 25.2 ppm across global 2D parameter space.
 
 Exports a JSON certificate with SHA-256 integrity digest to `certificates/verification_report.json`.
 """

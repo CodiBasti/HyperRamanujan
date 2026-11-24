@@ -14,7 +14,7 @@ semi-axes a >= b >= c >= 0:
    S(a, b, c) reduces IDENTICALLY to (pi / 2) * C_2D(X, Y)!
    Using Spherical Ray Projection s = 1 - Z/M in [0, 1] and h_ray = ((X - Y)/(X + Y - 2*Z))^2 in [0, 1],
    coupled with our 2D Pareto champion `HR-8P` and a singular-pole ray blender w(s),
-   `HR-3D-10P` slashes Knud Thomsen's 10,608 ppm error down to ~16.7 ppm across all triaxial shapes
+   `HR-3D-10P` slashes Knud Thomsen's 10,608 ppm error down to 25.14 ppm (< 25.2 ppm) across all triaxial shapes
    using ONLY ONE square root and ZERO fractional pow() calls!
 """
 
@@ -131,8 +131,8 @@ def approx_hr_3d_10p(a: mp.mpf, b: mp.mpf, c: mp.mpf) -> mp.mpf:
     `HR-3D-10P` ★: Degree-10 Spherical Taylor Series + Singular-Pole Ray Projection (q = 8/9)
     onto the exact 2D `HR-8P` Degenerate Boundary (1x sqrt, 0x pow).
     Matches exact 3D spherical expansion up to degree 10, is exact (< 0.63 ppm) on the entire
-    3D degenerate boundary Z = 0, and achieves a global max error of ~16.7 ppm across all
-    triaxial ellipsoids (over 630x more accurate than Thomsen 2004 with ZERO fractional powers!).
+    3D degenerate boundary Z = 0, and achieves a global max error of 25.14 ppm (< 25.2 ppm) across all
+    triaxial ellipsoids (over 420x more accurate than Thomsen 2004 with ZERO fractional powers!).
     """
     inv = compute_3d_invariants(a, b, c)
     M, H, J, s, Hb, Jb, h_ray = inv["M"], inv["H"], inv["J"], inv["s"], inv["Hb"], inv["Jb"], inv["h_ray"]
